@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ed684be0b6ea44f9306cf4f810ad21, type: 3}
   m_Name: BoatLiveManager
   m_EditorClassIdentifier: 
-  value: 5
+  value: 2
