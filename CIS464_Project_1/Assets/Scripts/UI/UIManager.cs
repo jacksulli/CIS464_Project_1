@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     //private Slider slider;
 
     [SerializeField]
-    private TextMeshProUGUI text;
+    private TextMeshProUGUI livesLeftText;
 
     [SerializeField]
     private TextMeshProUGUI enemyLeftText;
@@ -18,11 +18,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private PlayerLivesSO livesManager;
 
+    [SerializeField]
+    private EnemiesLeftSO enemiesManager;
+
     public GameObject lossMenuObject;
 
     private void Start()
     {
-        text.text = livesManager.value.ToString();
+        livesLeftText.text = livesManager.value.ToString();
+        enemyLeftText.text = enemiesManager.value.ToString();
     }
 
 
@@ -40,7 +44,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeLivesValue(int amount)
     {
-        text.text = amount.ToString();
+        livesLeftText.text = amount.ToString();
     }
 
     public void ChangeEnemyLeftValue(int amount)
