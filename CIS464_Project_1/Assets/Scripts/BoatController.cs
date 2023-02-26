@@ -129,7 +129,7 @@ public class BoatController : MonoBehaviour
   
     private void DropDepthCharge()
     {
-        Debug.Log("Dropping Charge!");
+        //Debug.Log("Dropping Charge!");
 
         GameObject droppedItem = Instantiate(depthCharge, dropPosition.position, transform.rotation);
         Rigidbody rig = droppedItem.GetComponent<Rigidbody>();

@@ -6,8 +6,6 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    //[SerializeField]
-    //private Slider slider;
 
     [SerializeField]
     private TextMeshProUGUI livesLeftText;
@@ -34,12 +32,14 @@ public class UIManager : MonoBehaviour
     void OnEnable()
     {
         livesManager.livesChangeEvent.AddListener(ChangeLivesValue);
+        enemiesManager.enemiesLeftEvent.AddListener(ChangeEnemyLeftValue);
     }
 
     // Update is called once per frame
     void OnDisable()
     {
         livesManager.livesChangeEvent.RemoveListener(ChangeLivesValue);
+        enemiesManager.enemiesLeftEvent.RemoveListener(ChangeEnemyLeftValue);
     }
 
     public void ChangeLivesValue(int amount)
@@ -51,4 +51,5 @@ public class UIManager : MonoBehaviour
     {
         enemyLeftText.text = amount.ToString();
     }
+
 }
