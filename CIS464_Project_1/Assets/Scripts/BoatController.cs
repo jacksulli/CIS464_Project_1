@@ -46,6 +46,7 @@ public class BoatController : MonoBehaviour
     [SerializeField] private PlayerLivesSO livesManager; //Reference to the player lives
 
     private bool inSonarMode = false;
+    private bool canDie = true;
 
 
     // Start is called before the first frame update
@@ -171,28 +172,31 @@ public class BoatController : MonoBehaviour
 
     public void Die()
     {
-        //Subtract one from the lives counter
-        livesManager.DecreaseLives(1);
-        Debug.Log("Boom!");
-        AudioManager.Instance.PlaySound("Explosion");
-        //Set the mesh invisible to mimc being destroyed
-        mesh.SetActive(false);
-        rb.isKinematic = true;
-
-        Instantiate(explosion, transform.position, transform.rotation);
-        
-
-        //If the lives are greater than 0, restart the level
-        //If the lives are 0, end game
-        if (livesManager.value > 0)
+        if(canDie)
         {
-            StartCoroutine(ResetLevel());
-        }
-        else
-        {
-            Debug.Log("You Lose!");
-            //Generate loss UI
-            levelManager.Loss();
+            //Subtract one from the lives counter
+            livesManager.DecreaseLives(1);
+            Debug.Log("Boom!");
+            AudioManager.Instance.PlaySound("Explosion");
+            //Set the mesh invisible to mimc being destroyed
+            mesh.SetActive(false);
+            rb.isKinematic = true;
+
+            Instantiate(explosion, transform.position, transform.rotation);
+
+
+            //If the lives are greater than 0, restart the level
+            //If the lives are 0, end game
+            if (livesManager.value > 0)
+            {
+                StartCoroutine(ResetLevel());
+            }
+            else
+            {
+                Debug.Log("You Lose!");
+                //Generate loss UI
+                levelManager.Loss();
+            }
         }
         
     }
@@ -203,7 +207,7 @@ public class BoatController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    private void ExitSonarMode()
+    public void ExitSonarMode()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -218,5 +222,35 @@ public class BoatController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.4f); //In theory this seconds would depend on the upward force value
         AudioManager.Instance.PlaySound("Splash");
+    }
+
+    //Debug Info -----------------------------------------------------
+
+    public void IncreaseSpeed()
+    {
+        movementSpeed += 1;
+    }
+
+    public void DecreaseSpeed()
+    {
+        movementSpeed -= 1;
+    }
+
+    public void ToggleInvincibility()
+    {
+        if(canDie)
+        {
+            canDie = false;
+            Debug.Log("You are now invincible!");
+        }
+        else
+        {
+            if (canDie)
+            {
+                canDie = true;
+                Debug.Log("You are now vincible!");
+            }
+        }
+        
     }
 }

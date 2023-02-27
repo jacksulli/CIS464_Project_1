@@ -45,6 +45,12 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void PreviousLevel()
+    {
+        livesManager.value = 5;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
     void OnEnable()
     {
         livesManager.livesChangeEvent.AddListener(CheckForLoss);

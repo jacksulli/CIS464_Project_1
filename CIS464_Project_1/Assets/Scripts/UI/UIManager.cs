@@ -27,7 +27,10 @@ public class UIManager : MonoBehaviour
         enemyLeftText.text = enemiesManager.value.ToString();
     }
 
-
+    private void Update()
+    {
+        
+    }
     // Start is called before the first frame update
     void OnEnable()
     {
