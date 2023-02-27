@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public PlayerLivesSO livesManager;
+    public EnemiesLeftSO enemiesManager;
 
     public GameObject lossMenu;
 
@@ -18,10 +19,14 @@ public class LevelManager : MonoBehaviour
             livesManager.value = 0;
             livesManager.IncreaseLives(1);
         }
+
+        enemiesManager.value = 0;
     }
     public void Loss()
     {
         lossMenu.SetActive(true);
+        Cursor.visible = true; //Turn off mouse cursor
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void NextLevel()
@@ -38,6 +43,37 @@ public class LevelManager : MonoBehaviour
     {
         livesManager.value = 5;
         SceneManager.LoadScene(1);
+    }
+
+    void OnEnable()
+    {
+        livesManager.livesChangeEvent.AddListener(CheckForLoss);
+        enemiesManager.enemiesLeftEvent.AddListener(CheckForWin);
+    }
+
+    // Update is called once per frame
+    void OnDisable()
+    {
+        livesManager.livesChangeEvent.RemoveListener(CheckForLoss);
+        enemiesManager.enemiesLeftEvent.RemoveListener(CheckForWin);
+    }
+
+    public void CheckForLoss(int _amount)
+    {
+        if (livesManager.value <= 0)
+        {
+            Debug.Log("You Lost!");
+            Loss();
+        }
+    }
+
+    public void CheckForWin(int _amount)
+    {
+        if(enemiesManager.value <= 0)
+        {
+            Debug.Log("You Win!");
+            NextLevel();
+        }
     }
 
 

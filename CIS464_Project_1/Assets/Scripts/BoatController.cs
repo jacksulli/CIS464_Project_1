@@ -10,7 +10,9 @@ public class BoatController : MonoBehaviour
     private Vector2 playerInput;
     public LevelManager levelManager;
     public GameObject explosion;
+    private Camera cam;
 
+    [SerializeField] private GameObject sonarPingObject;
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 13f; //Movement speed (Force)
@@ -43,12 +45,16 @@ public class BoatController : MonoBehaviour
     [SerializeField] private GameObject mesh; //Reference to the mesh of the boat object
     [SerializeField] private PlayerLivesSO livesManager; //Reference to the player lives
 
+    private bool inSonarMode = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        cam = Camera.main;
         rb = GetComponent<Rigidbody>(); //Get reference to the boat's rigidbody
         Cursor.visible = false; //Turn off mouse cursor
+        Cursor.lockState = CursorLockMode.Locked;
 
         wakeParticle = transform.GetChild(2).GetComponent<ParticleSystem>().emission;
         frontWakeParticle = transform.GetChild(3).GetComponent<ParticleSystem>().emission; //Change this to search by name
@@ -69,10 +75,32 @@ public class BoatController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.F))
         {
+            if(inSonarMode)
+            {
+                inSonarMode = false;
+                ExitSonarMode();
+            }
+            else
+            {
+                inSonarMode = true;
+                EnterSonarMode();
+            }
             //Enter sonar mode
 
-            //Play temp sound
-            AudioManager.Instance.PlaySound("Sonar");
+        }
+
+        if(inSonarMode)
+        {
+            if(Input.GetButtonDown("Fire1"))
+            {
+                Vector3 mousePos = Input.mousePosition;
+                Vector3 worldSpacePosition = cam.ScreenToWorldPoint(mousePos);
+                Debug.Log(worldSpacePosition);
+
+                Instantiate(sonarPingObject, new Vector3(worldSpacePosition.x, 0, worldSpacePosition.z), transform.rotation);
+                //Play temp sound
+                AudioManager.Instance.PlaySound("Sonar");
+            }
         }
 
         Move();
@@ -169,6 +197,17 @@ public class BoatController : MonoBehaviour
         
     }
 
+    private void EnterSonarMode()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void ExitSonarMode()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     public IEnumerator ResetLevel()
     {
         yield return new WaitForSeconds(2);
