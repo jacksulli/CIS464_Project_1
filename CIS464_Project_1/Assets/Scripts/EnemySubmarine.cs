@@ -24,7 +24,7 @@ public class EnemySubmarine : MonoBehaviour
 
     private void Update()
     {
-        periscope.transform.LookAt(player, Vector3.up);
+  
     }
 
     private IEnumerator Attack()
@@ -67,12 +67,11 @@ public class EnemySubmarine : MonoBehaviour
         enemiesLeft.DecreaseLives(1);
         //Spawn Explosion Effect
         Debug.Log("Submarine Destroyed!");
+        AudioManager.Instance.PlaySound("KilledEnemy");
         Destroy(this.gameObject);
     }
 
-    private void PlayerImpactPoint()
-    {
-    
-    }
+    //Predictive Aiming -----------------------------------------------------
+
 
 }

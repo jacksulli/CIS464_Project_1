@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public EnemiesLeftSO enemiesManager;
 
     public GameObject lossMenu;
+    public GameObject winText;
 
     public int livesToAdd;
 
@@ -68,7 +69,6 @@ public class LevelManager : MonoBehaviour
     {
         if (livesManager.value <= 0)
         {
-            Debug.Log("You Lost!");
             Loss();
         }
     }
@@ -77,10 +77,16 @@ public class LevelManager : MonoBehaviour
     {
         if(enemiesManager.value <= 0)
         {
-            Debug.Log("You Win!");
-            NextLevel();
+            StartCoroutine(WinLevel());
         }
     }
 
+
+    private IEnumerator WinLevel()
+    {
+        winText.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        NextLevel();
+    }
 
 }

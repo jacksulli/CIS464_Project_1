@@ -13,5 +13,8 @@ public class ExplosionTrigger : MonoBehaviour
             theBoat.Die();
             Destroy(this.gameObject);
         }
+
     }
+
+
 }

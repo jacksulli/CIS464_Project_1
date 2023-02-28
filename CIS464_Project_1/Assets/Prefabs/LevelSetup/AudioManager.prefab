@@ -184,6 +184,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 90aba5276f348424ca9d404c3a22c958, type: 3}
   - name: Collision
     clip: {fileID: 8300000, guid: 7a78198c4bb441744b412d67c1b75069, type: 3}
+  - name: Drop1
+    clip: {fileID: 8300000, guid: 8db0ed61bdab2a541ab36fbae9647207, type: 3}
+  - name: Drop2
+    clip: {fileID: 8300000, guid: 68fa6b52854a47f4b9b1655b2e585cce, type: 3}
   musicSource: {fileID: 6967445270358789675}
   sfxSource: {fileID: 6967445269594402782}
 --- !u!1 &6967445270358789674

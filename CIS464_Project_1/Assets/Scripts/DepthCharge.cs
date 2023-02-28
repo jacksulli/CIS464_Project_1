@@ -8,7 +8,14 @@ public class DepthCharge : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(LifeCycle());
+    }
 
+    private IEnumerator LifeCycle()
+    {
+        yield return new WaitForSeconds(3f);
+        Instantiate(explosion, new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z), transform.rotation);
+        Destroy(this.gameObject);
     }
 }
 
