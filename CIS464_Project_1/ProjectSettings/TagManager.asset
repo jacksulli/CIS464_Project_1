@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ocean
   - Enemy
+  - Mine
   layers:
   - Default
   - TransparentFX

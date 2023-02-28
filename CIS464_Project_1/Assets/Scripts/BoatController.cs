@@ -47,6 +47,10 @@ public class BoatController : MonoBehaviour
 
     private bool inSonarMode = false;
     private bool canDie = true;
+    private bool canLoseLives = true;
+
+    public FloatVariable depthChargeUses;
+    private bool freezeControls = false;
 
 
     // Start is called before the first frame update
@@ -59,52 +63,64 @@ public class BoatController : MonoBehaviour
 
         wakeParticle = transform.GetChild(2).GetComponent<ParticleSystem>().emission;
         frontWakeParticle = transform.GetChild(3).GetComponent<ParticleSystem>().emission; //Change this to search by name
+
+        depthChargeUses.value = 3; 
+
+
     }
 
     void Update()
     {
-        //If Spacebar is pressed, and the cooldown has passed, drop a depth charge
-        if(Time.time > nextFireTime)
+        if(!freezeControls)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            //If Spacebar is pressed, and the cooldown has passed, drop a depth charge
+            if (Time.time > nextFireTime)
             {
-                DropDepthCharge();
-                nextFireTime = Time.time + coolDownTime;
+                if (depthChargeUses.value > 0)
+                {
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        DropDepthCharge();
+                        nextFireTime = Time.time + coolDownTime;
+                    }
+                }
+
+
             }
-            
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (inSonarMode)
+                {
+                    inSonarMode = false;
+                    ExitSonarMode();
+                }
+                else
+                {
+                    inSonarMode = true;
+                    EnterSonarMode();
+                }
+                //Enter sonar mode
+
+            }
+
+            if (inSonarMode)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Vector3 mousePos = Input.mousePosition;
+                    Vector3 worldSpacePosition = cam.ScreenToWorldPoint(mousePos);
+                    Debug.Log(worldSpacePosition);
+
+                    Instantiate(sonarPingObject, new Vector3(worldSpacePosition.x, 0, worldSpacePosition.z), transform.rotation);
+                    //Play temp sound
+                    AudioManager.Instance.PlaySound("Sonar");
+                }
+            }
+
+            Move();
         }
-
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            if(inSonarMode)
-            {
-                inSonarMode = false;
-                ExitSonarMode();
-            }
-            else
-            {
-                inSonarMode = true;
-                EnterSonarMode();
-            }
-            //Enter sonar mode
-
-        }
-
-        if(inSonarMode)
-        {
-            if(Input.GetButtonDown("Fire1"))
-            {
-                Vector3 mousePos = Input.mousePosition;
-                Vector3 worldSpacePosition = cam.ScreenToWorldPoint(mousePos);
-                Debug.Log(worldSpacePosition);
-
-                Instantiate(sonarPingObject, new Vector3(worldSpacePosition.x, 0, worldSpacePosition.z), transform.rotation);
-                //Play temp sound
-                AudioManager.Instance.PlaySound("Sonar");
-            }
-        }
-
-        Move();
+        
     }
 
 
@@ -165,22 +181,35 @@ public class BoatController : MonoBehaviour
 
         rig.AddForce(-transform.forward * dropBackwardForce, ForceMode.Impulse);
         rig.AddForce(transform.up * dropUpwardForce, ForceMode.Impulse);
-
+        depthChargeUses.value -= 1;
         StartCoroutine(DepthChargeSound());
         
     }
 
+    private void FreezeControls()
+    {
+        if(inSonarMode)
+        {
+            ExitSonarMode();
+        }
+        freezeControls = true;
+    }
     public void Die()
     {
         if(canDie)
         {
             //Subtract one from the lives counter
-            livesManager.DecreaseLives(1);
+            if(canLoseLives)
+            {
+                livesManager.DecreaseLives(1);
+            }
+
             Debug.Log("Boom!");
             AudioManager.Instance.PlaySound("Explosion");
             //Set the mesh invisible to mimc being destroyed
             mesh.SetActive(false);
-            rb.isKinematic = true;
+            canLoseLives = false;
+            FreezeControls();
 
             Instantiate(explosion, transform.position, transform.rotation);
 

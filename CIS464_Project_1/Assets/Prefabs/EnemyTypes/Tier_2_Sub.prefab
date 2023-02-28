@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4aefe30d3e725264dbe87732ebf80b92, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,7 +144,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4aefe30d3e725264dbe87732ebf80b92, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,7 +227,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4aefe30d3e725264dbe87732ebf80b92, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -310,7 +310,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4aefe30d3e725264dbe87732ebf80b92, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -341,6 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 859056830776672253}
+  - component: {fileID: 839020336}
   m_Layer: 0
   m_Name: Periscope
   m_TagString: Untagged
@@ -367,6 +368,18 @@ Transform:
   m_Father: {fileID: 859056830824662650}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839020336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859056830776672254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f80f688dec604f4089f8ed9c9df4ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &859056830824662645
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,8 +391,9 @@ GameObject:
   - component: {fileID: 859056830824662650}
   - component: {fileID: 859056830824662651}
   - component: {fileID: 859056830824662644}
+  - component: {fileID: 247412533}
   m_Layer: 0
-  m_Name: EnemySubmarine
+  m_Name: Tier_2_Sub
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859056830824662645}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.113, y: 0.118, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -419,8 +433,13 @@ MonoBehaviour:
   minWaitTime: 1
   maxWaitTime: 10
   periscope: {fileID: 859056830776672254}
+  torpedo: {fileID: 3103376389177017567, guid: bfff8c9e10ce973478b9ea8917c97ee9, type: 3}
   waterRippleObject: {fileID: 5023228498562996796}
   enemiesLeft: {fileID: 11400000, guid: 646327440cf25fe4a9246bf9fb7ae0c7, type: 2}
+  agent: {fileID: 0}
+  range: 5
+  centrePoint: {fileID: 859056830824662650}
+  enemyType: {fileID: 11400000, guid: 308c902be2d00844daa00aa32cc5c78d, type: 2}
 --- !u!65 &859056830824662644
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -434,6 +453,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.21993208, y: 0.23429847, z: 0.70262593}
   m_Center: {x: 0.0007183552, y: 0.0007184744, z: -0.00071817636}
+--- !u!195 &247412533
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859056830824662645}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 0.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 60
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &859056830989095581
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +565,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 859056830824662650}
     m_Modifications:
+    - target: {fileID: 5516013650611167366, guid: cb127696939a06d4ca3635ba2f917164, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5516418144188478274, guid: cb127696939a06d4ca3635ba2f917164, type: 3}
       propertyPath: lengthInSec
       value: 2

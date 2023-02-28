@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 4705524397781031678}
   m_Layer: 0
   m_Name: SeaMine
-  m_TagString: Untagged
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -847,6 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a5371c7778f00499e9cb4d4a94b6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 8765277779488179987, guid: 3469f3ed2f3394e43be8d59e9177e35a, type: 3}
 --- !u!95 &4705524397781031678
 Animator:
   serializedVersion: 4

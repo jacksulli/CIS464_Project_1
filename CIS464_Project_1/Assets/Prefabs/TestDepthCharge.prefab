@@ -146,3 +146,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 2693229324506035181, guid: 995ef91ac3c565b42a04aa40e21b5693, type: 3}
+  depthChargeUses: {fileID: 11400000, guid: a6136c6470f64f14eb69477b574775be, type: 2}

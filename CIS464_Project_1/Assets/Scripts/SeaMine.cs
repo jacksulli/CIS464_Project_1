@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SeaMine : MonoBehaviour
 {
+    [SerializeField] private GameObject explosionEffect;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -13,5 +14,11 @@ public class SeaMine : MonoBehaviour
             theBoat.Die();
             Destroy(this.gameObject);
         }
+    }
+
+    public void Die()
+    {
+        Instantiate(explosionEffect, transform.position, transform.rotation);
+        Destroy(this.gameObject);
     }
 }
