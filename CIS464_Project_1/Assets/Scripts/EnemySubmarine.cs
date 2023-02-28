@@ -7,12 +7,14 @@ public class EnemySubmarine : MonoBehaviour
 {
     public Transform player;
     [SerializeField] private float minWaitTime = 1f;
-    [SerializeField] private float maxWaitTime = 10f;
+    [SerializeField] private float maxWaitTime = 15f;
 
     [SerializeField] GameObject periscope;
     [SerializeField] Rigidbody torpedo;
     [SerializeField] GameObject homingTorpedo;
 
+    [SerializeField] GameObject explosionEffect;
+    [SerializeField] GameObject debris;
 
 
     [SerializeField] private Transform waterRippleObject;
@@ -32,11 +34,10 @@ public class EnemySubmarine : MonoBehaviour
     public Transform centrePoint;
 
     [SerializeField] private EnemyType enemyType;
+
     void Start()
     {
         enemiesLeft.IncreaseLives(1);
-
-
         agent = GetComponent<NavMeshAgent>();
         agent.speed = enemyType.subSpeed;
         torpedoSpeed = enemyType.torpedoSpeed;
@@ -160,8 +161,10 @@ public class EnemySubmarine : MonoBehaviour
     {
         enemiesLeft.DecreaseLives(1);
         //Spawn Explosion Effect
-        Debug.Log("Submarine Destroyed!");
+        Instantiate(explosionEffect, transform.position, transform.rotation);
         AudioManager.Instance.PlaySound("KilledEnemy");
+        Instantiate(debris, new Vector3(transform.position.x, 0, transform.position.z), transform.rotation);
+
         Destroy(this.gameObject);
     }
 

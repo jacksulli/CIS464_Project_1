@@ -47,10 +47,9 @@ public class BoatController : MonoBehaviour
 
     private bool inSonarMode = false;
     private bool canDie = true;
-    private bool canLoseLives = true;
 
     public FloatVariable depthChargeUses;
-    private bool freezeControls = false;
+    private bool freezeControls = true;
 
 
     // Start is called before the first frame update
@@ -64,7 +63,9 @@ public class BoatController : MonoBehaviour
         wakeParticle = transform.GetChild(2).GetComponent<ParticleSystem>().emission;
         frontWakeParticle = transform.GetChild(3).GetComponent<ParticleSystem>().emission; //Change this to search by name
 
-        depthChargeUses.value = 3; 
+        depthChargeUses.value = 3;
+
+        StartCoroutine(StartSequence());
 
 
     }
@@ -103,7 +104,6 @@ public class BoatController : MonoBehaviour
                 //Enter sonar mode
 
             }
-
             if (inSonarMode)
             {
                 if (Input.GetButtonDown("Fire1"))
@@ -121,6 +121,13 @@ public class BoatController : MonoBehaviour
             Move();
         }
         
+    }
+
+    private IEnumerator StartSequence()
+    {
+        yield return new WaitForSeconds(2f);
+        AudioManager.Instance.PlaySound("ShipBell");
+        ToggleFreezeControls();
     }
 
 
@@ -186,30 +193,33 @@ public class BoatController : MonoBehaviour
         
     }
 
-    private void FreezeControls()
+    private void ToggleFreezeControls()
     {
-        if(inSonarMode)
+        if(freezeControls)
         {
-            ExitSonarMode();
+            freezeControls = false;
         }
-        freezeControls = true;
+        else
+        {
+            if (inSonarMode)
+            {
+                ExitSonarMode();
+            }
+            freezeControls = true;
+        }
+        
     }
     public void Die()
     {
         if(canDie)
         {
             //Subtract one from the lives counter
-            if(canLoseLives)
-            {
-                livesManager.DecreaseLives(1);
-            }
+            livesManager.DecreaseLives(1);
+
 
             Debug.Log("Boom!");
             AudioManager.Instance.PlaySound("Explosion");
             //Set the mesh invisible to mimc being destroyed
-            mesh.SetActive(false);
-            canLoseLives = false;
-            FreezeControls();
 
             Instantiate(explosion, transform.position, transform.rotation);
 
@@ -218,7 +228,7 @@ public class BoatController : MonoBehaviour
             //If the lives are 0, end game
             if (livesManager.value > 0)
             {
-                StartCoroutine(ResetLevel());
+                levelManager.ResetCurrentLevel();
             }
             else
             {
@@ -226,6 +236,8 @@ public class BoatController : MonoBehaviour
                 //Generate loss UI
                 levelManager.Loss();
             }
+
+            this.enabled = false;
         }
         
     }
@@ -240,11 +252,6 @@ public class BoatController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-    }
-    public IEnumerator ResetLevel()
-    {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public IEnumerator DepthChargeSound()

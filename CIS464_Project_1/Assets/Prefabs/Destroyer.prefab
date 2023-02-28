@@ -9648,7 +9648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7587445042956491318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.2913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9735,7 +9735,7 @@ MonoBehaviour:
   dropBackwardForce: 0.1
   dropUpwardForce: 3
   coolDownTime: 1
-  mesh: {fileID: 0}
+  mesh: {fileID: 919132148458651590}
   livesManager: {fileID: 11400000, guid: 6371e19c7be9ea44dbd8b0512f8565ca, type: 2}
   depthChargeUses: {fileID: 11400000, guid: a6136c6470f64f14eb69477b574775be, type: 2}
 --- !u!65 &1548579770296108790
@@ -9858,5 +9858,10 @@ PrefabInstance:
 --- !u!4 &543450652113937788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b2ddd1656e5856247b77892f89943a01, type: 3}
+  m_PrefabInstance: {fileID: 1586086551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &919132148458651590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b2ddd1656e5856247b77892f89943a01, type: 3}
   m_PrefabInstance: {fileID: 1586086551}
   m_PrefabAsset: {fileID: 0}

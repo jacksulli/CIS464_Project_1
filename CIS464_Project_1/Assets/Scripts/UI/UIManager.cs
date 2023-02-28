@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,10 +22,20 @@ public class UIManager : MonoBehaviour
 
     public GameObject lossMenuObject;
 
+    public FloatVariable currentLevel;
+
+    public GameObject roundStart;
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI enemiesText;
+
     private void Start()
     {
         livesLeftText.text = livesManager.value.ToString();
         enemyLeftText.text = enemiesManager.value.ToString();
+
+        levelText.text = "Level: " + SceneManager.GetActiveScene().buildIndex.ToString();
+
+        StartCoroutine(StartSequence());
     }
 
     private void Update()
@@ -53,6 +64,12 @@ public class UIManager : MonoBehaviour
     public void ChangeEnemyLeftValue(int amount)
     {
         enemyLeftText.text = amount.ToString();
+        enemiesText.text = "Enemies: " + amount.ToString();
     }
 
+    public IEnumerator StartSequence()
+    {
+        yield return new WaitForSeconds(2f);
+        roundStart.SetActive(false);
+    }
 }

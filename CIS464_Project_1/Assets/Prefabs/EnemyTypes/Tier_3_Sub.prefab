@@ -434,9 +434,11 @@ MonoBehaviour:
   maxWaitTime: 10
   periscope: {fileID: 859056830776672254}
   torpedo: {fileID: 3103376389177017567, guid: bfff8c9e10ce973478b9ea8917c97ee9, type: 3}
+  homingTorpedo: {fileID: 0}
+  explosionEffect: {fileID: 4559901993901544462, guid: e98fc855dcd44b844bcc3e580f78b929, type: 3}
+  debris: {fileID: 3185373630269957859, guid: 8ecc191720d928847973f80ee67797a4, type: 3}
   waterRippleObject: {fileID: 5023228498562996796}
   enemiesLeft: {fileID: 11400000, guid: 646327440cf25fe4a9246bf9fb7ae0c7, type: 2}
-  agent: {fileID: 0}
   range: 5
   centrePoint: {fileID: 859056830824662650}
   enemyType: {fileID: 11400000, guid: 01f38deca48adff48b7fc23c2024cd0c, type: 2}

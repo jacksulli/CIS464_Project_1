@@ -49,3 +49,7 @@ MonoBehaviour:
   livesManager: {fileID: 11400000, guid: 6371e19c7be9ea44dbd8b0512f8565ca, type: 2}
   enemiesManager: {fileID: 11400000, guid: 646327440cf25fe4a9246bf9fb7ae0c7, type: 2}
   lossMenuObject: {fileID: 0}
+  currentLevel: {fileID: 11400000, guid: e5cdbe1a3bd6b504d8177294c8bf27cf, type: 2}
+  roundStart: {fileID: 0}
+  levelText: {fileID: 0}
+  enemiesText: {fileID: 0}

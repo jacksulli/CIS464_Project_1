@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
     public PlayerLivesSO livesManager;
     public EnemiesLeftSO enemiesManager;
+    public FloatVariable currentLevel;
 
     public GameObject lossMenu;
     public GameObject winText;
+    
 
     public int livesToAdd;
 
@@ -22,7 +25,10 @@ public class LevelManager : MonoBehaviour
         }
 
         enemiesManager.value = 0;
+        
     }
+
+
     public void Loss()
     {
         lossMenu.SetActive(true);
@@ -33,11 +39,13 @@ public class LevelManager : MonoBehaviour
     public void NextLevel()
     {
         livesManager.IncreaseLives(livesToAdd);
+        currentLevel.value += 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void MainMenu()
     {
+        currentLevel.value = 1;
         SceneManager.LoadScene(0);
     }
     public void Restart()
@@ -52,6 +60,10 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
+    public void ResetCurrentLevel()
+    {
+        StartCoroutine(ResetCycle());
+    }
     void OnEnable()
     {
         livesManager.livesChangeEvent.AddListener(CheckForLoss);
@@ -81,12 +93,26 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
+    
     private IEnumerator WinLevel()
     {
         winText.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        NextLevel();
+        yield return new WaitForSeconds(4f);
+
+        if(currentLevel.value == 5)
+        {
+            MainMenu();
+        }
+        else
+        {
+            NextLevel();
+        }
+        
+    }
+    public IEnumerator ResetCycle()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

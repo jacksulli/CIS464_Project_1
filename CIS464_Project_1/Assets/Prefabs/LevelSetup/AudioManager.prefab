@@ -188,6 +188,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8db0ed61bdab2a541ab36fbae9647207, type: 3}
   - name: Drop2
     clip: {fileID: 8300000, guid: 68fa6b52854a47f4b9b1655b2e585cce, type: 3}
+  - name: KilledEnemy
+    clip: {fileID: 8300000, guid: 3a7c49f38fd423b4e8c8da1cd29f3ef4, type: 3}
+  - name: WaterExplosion
+    clip: {fileID: 8300000, guid: f7ed460f0d2001f4a838e8a3ab184e05, type: 3}
+  - name: ShipBell
+    clip: {fileID: 8300000, guid: 34f2da34ec05e04438a4877393a24bb3, type: 3}
   musicSource: {fileID: 6967445270358789675}
   sfxSource: {fileID: 6967445269594402782}
 --- !u!1 &6967445270358789674
