@@ -9,12 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 5d6995d0f24c1cd439cc67a788732b5c
   - enabled: 1
-    path: Assets/Scenes/LevelToDuplicate.unity
-    guid: 1ffb7ad1652b14d459ad488b6d2b6ce9
+    path: Assets/Scenes/Level_1.unity
+    guid: cfc11abca44129b4ea7abacc1baab9ef
   - enabled: 1
     path: Assets/Scenes/Level_2.unity
-    guid: 6d2f7bffb05192f4c90a52545631eb73
+    guid: 9413d85168c975f4ca857deeb7550e2b
+  - enabled: 1
+    path: Assets/Scenes/Level_3.unity
+    guid: 7261bbdf6dd68714aa6fc24a92e921d2
   - enabled: 1
     path: Assets/Scenes/Level_4.unity
-    guid: 56085ab4427d2084db9e1b02692fdbeb
+    guid: a2e6bf6f7bf04634bb3f34e24b78574b
+  - enabled: 1
+    path: Assets/Scenes/Level_5.unity
+    guid: fd0768107d57f1c4f9ae4db65f42d0d6
+  - enabled: 1
+    path: Assets/Scenes/Level_6.unity
+    guid: 6bdefbd643d5ca742b629f857a51ec7b
+  - enabled: 1
+    path: Assets/Scenes/Level_7.unity
+    guid: 29aba68e26b24ac4b93b7d0c7d9c4636
   m_configObjects: {}

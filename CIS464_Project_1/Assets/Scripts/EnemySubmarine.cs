@@ -27,6 +27,7 @@ public class EnemySubmarine : MonoBehaviour
     private Rigidbody target;
 
 
+
     //AI INFO -----------------------
     private NavMeshAgent agent;
     public float range;
@@ -51,7 +52,8 @@ public class EnemySubmarine : MonoBehaviour
 
     private void Update()
     {
-        if(enemyType.canMove)
+
+        if(enemyType.canMove && agent.enabled == true)
         {
             MoveAgent();
         }    
@@ -106,16 +108,19 @@ public class EnemySubmarine : MonoBehaviour
             float timeToWait = Random.Range(minWaitTime, maxWaitTime);
             //Debug.Log(timeToWait);
             yield return new WaitForSeconds(timeToWait);
+            agent.enabled = false;
             RaisePeriscope();
             yield return new WaitForSeconds(2f);
             LowerPeriscope();
+            yield return new WaitForSeconds(1f);
 
-            for(int i = 0; i < enemyType.shotCount; i++)
+            for (int i = 0; i < enemyType.shotCount; i++)
             {
                 Shoot();
                 yield return new WaitForSeconds(0.3f);
             }
-            
+
+            agent.enabled = true;
         }
        
     }

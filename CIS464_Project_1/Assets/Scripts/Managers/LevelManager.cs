@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject lossMenu;
     public GameObject winText;
+    public GameObject winImage;
     
 
     public int livesToAdd;
@@ -96,15 +97,18 @@ public class LevelManager : MonoBehaviour
     
     private IEnumerator WinLevel()
     {
-        winText.SetActive(true);
-        yield return new WaitForSeconds(4f);
+        
 
-        if(currentLevel.value == 5)
+        if(SceneManager.GetActiveScene().buildIndex == 7)
         {
+            winImage.SetActive(true);
+            yield return new WaitForSeconds(3f);
             MainMenu();
         }
         else
         {
+            winText.SetActive(true);
+            yield return new WaitForSeconds(4f);
             NextLevel();
         }
         

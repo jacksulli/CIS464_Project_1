@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f137b1c29eddc2848855735d55d6c733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sonarRadius: 1.25
+  sonarRadius: 10
   enemyDetected: {fileID: 2190038843290693348, guid: c67f9dc1d29d0a34898c66f1be2a8f7e, type: 3}

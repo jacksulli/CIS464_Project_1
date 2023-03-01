@@ -15,8 +15,16 @@ public class DepthCharge : MonoBehaviour
 
     private IEnumerator LifeCycle()
     {
+        yield return new WaitForSeconds(0.4f); //In theory this seconds would depend on the upward force value
+        AudioManager.Instance.PlaySound("Splash");
         yield return new WaitForSeconds(3f);
         Instantiate(explosion, new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z), transform.rotation);
+        Die();
+        
+    }
+
+    public void Die()
+    {
         depthChargeUses.value += 1;
         Destroy(this.gameObject);
     }

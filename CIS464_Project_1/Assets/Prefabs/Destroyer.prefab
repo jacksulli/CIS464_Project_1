@@ -9724,6 +9724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
   explosion: {fileID: 4913029964621895681, guid: 229e41b478850914c882cc6c4b10e44e, type: 3}
+  enemiesManager: {fileID: 11400000, guid: 646327440cf25fe4a9246bf9fb7ae0c7, type: 2}
   sonarPingObject: {fileID: 4787690717428490490, guid: 165648f6c7550704b8bbae24758a7f1b, type: 3}
   movementSpeed: 13
   rotationSpeed: 2
@@ -9737,6 +9738,10 @@ MonoBehaviour:
   coolDownTime: 1
   mesh: {fileID: 919132148458651590}
   livesManager: {fileID: 11400000, guid: 6371e19c7be9ea44dbd8b0512f8565ca, type: 2}
+  sonarCoolDown: 5
+  sonarUIHolder: {fileID: 0}
+  sonarActiveUI: {fileID: 0}
+  sonarRechargeUI: {fileID: 0}
   depthChargeUses: {fileID: 11400000, guid: a6136c6470f64f14eb69477b574775be, type: 2}
 --- !u!65 &1548579770296108790
 BoxCollider:

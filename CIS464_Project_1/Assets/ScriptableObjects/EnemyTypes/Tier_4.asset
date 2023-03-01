@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tier_4
   m_EditorClassIdentifier: 
   canMove: 0
-  homingTorpedo: 1
-  shotCount: 1
-  torpedoSpeed: 3
+  homingTorpedo: 0
+  shotCount: 3
+  torpedoSpeed: 4
   subSpeed: 0.5

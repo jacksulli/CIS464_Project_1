@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4379983919023338696}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.080762, y: 0.080762, z: 0.080762}
+  m_LocalScale: {x: 0.080762, y: 0.0969144, z: 0.080762}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6539462753217219513}
@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 6539462753217219513}
   - component: {fileID: 3562357992745710464}
   - component: {fileID: 8253391805784011152}
+  - component: {fileID: 406852401743127742}
   m_Layer: 0
   m_Name: TestDepthCharge
   m_TagString: Untagged
@@ -147,3 +148,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 2693229324506035181, guid: 995ef91ac3c565b42a04aa40e21b5693, type: 3}
   depthChargeUses: {fileID: 11400000, guid: a6136c6470f64f14eb69477b574775be, type: 2}
+--- !u!65 &406852401743127742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8946082498998676714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21404831, y: 0.6204121, z: 0.09276954}
+  m_Center: {x: -0.0007875338, y: -0.15829289, z: -0.000000022351742}

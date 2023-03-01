@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BoatController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BoatController : MonoBehaviour
     public LevelManager levelManager;
     public GameObject explosion;
     private Camera cam;
+
+    public EnemiesLeftSO enemiesManager;
 
     [SerializeField] private GameObject sonarPingObject;
 
@@ -44,12 +47,24 @@ public class BoatController : MonoBehaviour
     [Header("Other")]
     [SerializeField] private GameObject mesh; //Reference to the mesh of the boat object
     [SerializeField] private PlayerLivesSO livesManager; //Reference to the player lives
+    
 
+    //Sonar info
     private bool inSonarMode = false;
+    //Cooldown
+    public float sonarCoolDown = 5f; //This should be the time it takes a depth charge to explode
+    private float nextSonarTime;
+    [SerializeField] GameObject sonarUIHolder;
+    [SerializeField] GameObject sonarActiveUI;
+    [SerializeField] GameObject sonarRechargeUI;
+
+
+
     private bool canDie = true;
 
     public FloatVariable depthChargeUses;
     private bool freezeControls = true;
+
 
 
     // Start is called before the first frame update
@@ -85,8 +100,6 @@ public class BoatController : MonoBehaviour
                         nextFireTime = Time.time + coolDownTime;
                     }
                 }
-
-
             }
 
             if (Input.GetKeyDown(KeyCode.F))
@@ -106,21 +119,31 @@ public class BoatController : MonoBehaviour
             }
             if (inSonarMode)
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Time.time > nextSonarTime)
                 {
-                    Vector3 mousePos = Input.mousePosition;
-                    Vector3 worldSpacePosition = cam.ScreenToWorldPoint(mousePos);
-                    Debug.Log(worldSpacePosition);
+                    sonarRechargeUI.SetActive(false);
+                    sonarActiveUI.SetActive(true);
+                    
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        Vector3 mousePos = Input.mousePosition;
+                        Vector3 worldSpacePosition = cam.ScreenToWorldPoint(mousePos);
+                        Debug.Log(worldSpacePosition);
 
-                    Instantiate(sonarPingObject, new Vector3(worldSpacePosition.x, 0, worldSpacePosition.z), transform.rotation);
-                    //Play temp sound
-                    AudioManager.Instance.PlaySound("Sonar");
+                        Instantiate(sonarPingObject, new Vector3(worldSpacePosition.x, 0, worldSpacePosition.z), transform.rotation);
+                        //Play temp sound
+                        AudioManager.Instance.PlaySound("Sonar");
+                        nextSonarTime = Time.time + sonarCoolDown;
+                        sonarRechargeUI.SetActive(true);
+                        sonarActiveUI.SetActive(false);
+                    }
                 }
+                
             }
 
             Move();
         }
-        
+ 
     }
 
     private IEnumerator StartSequence()
@@ -157,6 +180,18 @@ public class BoatController : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        enemiesManager.enemiesLeftEvent.AddListener(LevelOver);
+    }
+
+    private void LevelOver(int _amount)
+    {
+        if(_amount <= 0)
+        {
+            canDie = false;
+        }
+    }
     private void Move()
     {
         playerInput.x = Input.GetAxis("Horizontal");
@@ -189,7 +224,6 @@ public class BoatController : MonoBehaviour
         rig.AddForce(-transform.forward * dropBackwardForce, ForceMode.Impulse);
         rig.AddForce(transform.up * dropUpwardForce, ForceMode.Impulse);
         depthChargeUses.value -= 1;
-        StartCoroutine(DepthChargeSound());
         
     }
 
@@ -246,30 +280,33 @@ public class BoatController : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        sonarUIHolder.SetActive(true);
     }
 
     public void ExitSonarMode()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        sonarUIHolder.SetActive(false);
     }
 
-    public IEnumerator DepthChargeSound()
-    {
-        yield return new WaitForSeconds(0.4f); //In theory this seconds would depend on the upward force value
-        AudioManager.Instance.PlaySound("Splash");
-    }
 
     //Debug Info -----------------------------------------------------
 
+    public void ResetSpeed()
+    {
+        movementSpeed = 13f;
+    }
     public void IncreaseSpeed()
     {
-        movementSpeed += 1;
+        movementSpeed += 50f;
+        rotationSpeed += .75f;
     }
 
     public void DecreaseSpeed()
     {
-        movementSpeed -= 1;
+        movementSpeed -= 50f;
+        rotationSpeed -= .75f;
     }
 
     public void ToggleInvincibility()

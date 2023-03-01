@@ -194,6 +194,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f7ed460f0d2001f4a838e8a3ab184e05, type: 3}
   - name: ShipBell
     clip: {fileID: 8300000, guid: 34f2da34ec05e04438a4877393a24bb3, type: 3}
+  - name: Click
+    clip: {fileID: 8300000, guid: dcc2621bbe305954caf1e46344d435e6, type: 3}
+  - name: TorpedoExplosion
+    clip: {fileID: 8300000, guid: 02bb890b8b3047d4c86df3a3644abad3, type: 3}
+  - name: ExplosionDebris
+    clip: {fileID: 8300000, guid: e9a7be0d108fc5e4cb02698d992d2ffa, type: 3}
   musicSource: {fileID: 6967445270358789675}
   sfxSource: {fileID: 6967445269594402782}
 --- !u!1 &6967445270358789674

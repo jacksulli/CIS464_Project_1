@@ -32,12 +32,22 @@ public class Torpedo : MonoBehaviour
             else if (other.gameObject.tag == "Mine")
             {
                 SeaMine seaMine = other.gameObject.GetComponent<SeaMine>();
+                AudioManager.Instance.PlaySound("TorpedoExplosion");
                 seaMine.Die();
                 Destroy(this.gameObject);
 
             }
+            else if(other.gameObject.GetComponent<DepthCharge>())
+            {
+                DepthCharge theCharge = other.gameObject.GetComponent<DepthCharge>();
+                theCharge.Die();
+                AudioManager.Instance.PlaySound("TorpedoExplosion");
+                Instantiate(explosionEffect, transform.position, transform.rotation);
+                Destroy(this.gameObject);
+            }
             else
             {
+                AudioManager.Instance.PlaySound("TorpedoExplosion");
                 Instantiate(explosionEffect, transform.position, transform.rotation);
                 Destroy(this.gameObject);
             }
