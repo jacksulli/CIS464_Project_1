@@ -2,19 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
 public class DepthChargeBlast : MonoBehaviour
 {
     [SerializeField] private float blastRadius = 1f;
     // Update is called once per frame
-=======
-//This script is a simple overlap sphere that checks for any enemy submarines inside of it.
-//The sphere only checks for submarines at the start frame, then dissapears.
-public class DepthChargeBlast : MonoBehaviour
-{
-    [SerializeField] private float blastRadius = 1f; //Variable for the radius of the depth charge blast (or the overlap sphere)
-
->>>>>>> Jack
     private void Start()
     {
         AudioManager.Instance.PlaySound("WaterExplosion");
