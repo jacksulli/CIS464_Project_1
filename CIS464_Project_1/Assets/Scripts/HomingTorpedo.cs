@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+<<<<<<< HEAD
+=======
+//DO NOT USE, UNDER CONSTRUCTION
+>>>>>>> Jack
 public class HomingTorpedo : MonoBehaviour
 {
     public Transform goal;
