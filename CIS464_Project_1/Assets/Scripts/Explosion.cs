@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script is meant to be attached to a particle effect, and the only purpose is to destroy it after a few seconds
 public class Explosion : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     void Start()
     {
         StartCoroutine(Lifetime());

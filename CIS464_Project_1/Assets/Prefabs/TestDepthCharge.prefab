@@ -132,3 +132,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+<<<<<<< Updated upstream
+=======
+--- !u!114 &8253391805784011152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8946082498998676714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1847c2965aa90534799a4bd3fc3c5698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 5171036445331115893, guid: 995ef91ac3c565b42a04aa40e21b5693, type: 3}
+  depthChargeUses: {fileID: 11400000, guid: a6136c6470f64f14eb69477b574775be, type: 2}
+--- !u!65 &406852401743127742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8946082498998676714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21404831, y: 0.6204121, z: 0.09276954}
+  m_Center: {x: -0.0007875338, y: -0.15829289, z: -0.000000022351742}
+>>>>>>> Stashed changes
