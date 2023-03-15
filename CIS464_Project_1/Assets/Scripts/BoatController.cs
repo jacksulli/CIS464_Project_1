@@ -47,19 +47,12 @@ public class BoatController : MonoBehaviour
     [SerializeField] private GameObject mesh; //Reference to the mesh of the boat object
     [SerializeField] private PlayerLivesSO livesManager; //Reference to the player lives
 
-
-    //Sonar info
-    private bool inSonarMode = false;
     //Cooldown
     public float sonarCoolDown = 5f; //This should be the time it takes a depth charge to explode
     private float nextSonarTime;  //Private variable to determine when the sonar can be used
     [SerializeField] GameObject sonarUIHolder; //Sonar UI gameobject
     [SerializeField] GameObject sonarActiveUI; //UI Gameobject that says that the sonar is active
     [SerializeField] GameObject sonarRechargeUI; //UI GameObject that says the sonar is recharging
-
-
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -99,18 +92,19 @@ public class BoatController : MonoBehaviour
                 }
             }
 
-            SonarInput();
+            SonarInput(); //Check for the player pressing the sonar button
 
-            Move();
+            Move(); //Check for the player rotating the boat
         }
  
     }
 
+    //Start sequence allows the player to read the level number and enemy number
     private IEnumerator StartSequence()
     {
-        yield return new WaitForSeconds(2f);
-        AudioManager.Instance.PlaySound("ShipBell");
-        ToggleFreezeControls();
+        yield return new WaitForSeconds(2f); // Wait two seconds
+        AudioManager.Instance.PlaySound("ShipBell"); //Play ship bell sound
+        ToggleFreezeControls(); //Unfreeze controls
     }
 
 
@@ -125,8 +119,10 @@ public class BoatController : MonoBehaviour
             rb.AddForce(transform.forward * movementSpeed);
         }
 
+        //Clamp the speed of the boat to a max speed so it can't accelerate forever
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
 
+        //Change the emission rate of the particles to be dependant on the velocity of the player
         wakeParticle.rateOverTime = wakeBase * wakeMultiplier * rb.velocity.magnitude;
         frontWakeParticle.rateOverTime = wakeBase * wakeMultiplier * rb.velocity.magnitude;
 
@@ -134,6 +130,7 @@ public class BoatController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //If the boat collides with something other than the ground
         if(collision.gameObject.tag != "Ocean")
         {
             AudioManager.Instance.PlaySound("Collision");
@@ -142,7 +139,7 @@ public class BoatController : MonoBehaviour
 
     void OnEnable()
     {
-        enemiesManager.enemiesLeftEvent.AddListener(LevelOver);
+        enemiesManager.enemiesLeftEvent.AddListener(LevelOver); //Make this script a listener for the LevelOver event from the enemiesManager Scriptable Object
     }
 
     private void SonarInput()
@@ -170,9 +167,10 @@ public class BoatController : MonoBehaviour
         }
     }
 
+    //Takes in the number of enemies left when the enemiesLeftEvent is called 
     private void LevelOver(int _amount)
     {
-        if(_amount <= 0)
+        if(_amount <= 0) //If the amount of enemies is 0, make the player invincible so they can't die from a torpedo launched by a dead enemy
         {
             canDie = false;
         }
@@ -181,34 +179,26 @@ public class BoatController : MonoBehaviour
     {
         playerInput.x = Input.GetAxis("Horizontal");
         playerInput.y = Input.GetAxis("Vertical");
-        playerInput = Vector2.ClampMagnitude(playerInput, 1f);
+        playerInput = Vector2.ClampMagnitude(playerInput, 1f); //Make the vector a unit vector so moving diagonally isn't faster than moving in the other directions
 
-        Vector3 targetDirection = new Vector3(playerInput.x, 0, playerInput.y);
+        Vector3 targetDirection = new Vector3(playerInput.x, 0, playerInput.y); //Creates a unit vector along the x-z plane
 
-        // The step size is equal to speed times frame time.
-        float singleStep = rotationSpeed * Time.deltaTime;
+        float singleStep = rotationSpeed * Time.deltaTime; //Set the size of the rotation step based on the rotation speed
 
-        // Rotate the forward vector towards the target direction by one step
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f); //Create a new direction that is a step away from the current rotation
 
-        // Draw a ray pointing at our target in
-        Debug.DrawRay(transform.position, newDirection, Color.red);
-
-        // Calculate a rotation a step closer to the target and applies rotation to this object
-        transform.rotation = Quaternion.LookRotation(newDirection);
+        transform.rotation = Quaternion.LookRotation(newDirection); //Rotate towards the previously calculated direction
     }
 
   
     private void DropDepthCharge()
     {
-        //Debug.Log("Dropping Charge!");
+        GameObject droppedItem = Instantiate(depthCharge, dropPosition.position, transform.rotation); //Spawn a depth charge object
+        Rigidbody rig = droppedItem.GetComponent<Rigidbody>(); //Get a reference to the depth charge's rigidbody
 
-        GameObject droppedItem = Instantiate(depthCharge, dropPosition.position, transform.rotation);
-        Rigidbody rig = droppedItem.GetComponent<Rigidbody>();
-
-        rig.AddForce(-transform.forward * dropBackwardForce, ForceMode.Impulse);
-        rig.AddForce(transform.up * dropUpwardForce, ForceMode.Impulse);
-        depthChargeUses.value -= 1;
+        rig.AddForce(-transform.forward * dropBackwardForce, ForceMode.Impulse); //Add a backward force to the depth charge
+        rig.AddForce(transform.up * dropUpwardForce, ForceMode.Impulse); //Add a upward force to the depth charge
+        depthChargeUses.value -= 1; //Decrease the amount of depth charges left to use
         
     }
 
@@ -220,10 +210,6 @@ public class BoatController : MonoBehaviour
         }
         else
         {
-            if (inSonarMode)
-            {
-                ExitSonarMode();
-            }
             freezeControls = true;
         }
         
@@ -232,16 +218,11 @@ public class BoatController : MonoBehaviour
     {
         if(canDie)
         {
-            //Subtract one from the lives counter
-            livesManager.DecreaseLives(1);
+            livesManager.DecreaseLives(1); //Subtract one from the lives counter
 
-
-            Debug.Log("Boom!");
             AudioManager.Instance.PlaySound("Explosion");
-            //Set the mesh invisible to mimc being destroyed
 
-            Instantiate(explosion, transform.position, transform.rotation);
-
+            Instantiate(explosion, transform.position, transform.rotation); //Create an explosion effect
 
             //If the lives are greater than 0, restart the level
             //If the lives are 0, end game
@@ -251,7 +232,6 @@ public class BoatController : MonoBehaviour
             }
             else
             {
-                Debug.Log("You Lose!");
                 //Generate loss UI
                 levelManager.Loss();
             }
@@ -261,27 +241,14 @@ public class BoatController : MonoBehaviour
         
     }
 
-    private void EnterSonarMode()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        sonarUIHolder.SetActive(true);
-    }
-
-    public void ExitSonarMode()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        sonarUIHolder.SetActive(false);
-    }
-
-
     //Debug Info -----------------------------------------------------
 
     public void ResetSpeed()
     {
         movementSpeed = 13f;
     }
+
+    //Increase speed and rotationspeed 
     public void IncreaseSpeed()
     {
         movementSpeed += 50f;
@@ -294,6 +261,7 @@ public class BoatController : MonoBehaviour
         rotationSpeed -= .75f;
     }
 
+    //Toggles player invincibility
     public void ToggleInvincibility()
     {
         if(canDie)

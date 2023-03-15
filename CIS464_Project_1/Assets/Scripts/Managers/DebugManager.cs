@@ -22,7 +22,6 @@ public class DebugManager : MonoBehaviour
             }
             else
             {
-                playerBoat.ExitSonarMode();
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 debugManager.SetActive(true);

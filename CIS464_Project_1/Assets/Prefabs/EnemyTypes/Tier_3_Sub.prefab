@@ -440,7 +440,7 @@ MonoBehaviour:
   waterRippleObject: {fileID: 5023228498562996796}
   enemiesLeft: {fileID: 11400000, guid: 646327440cf25fe4a9246bf9fb7ae0c7, type: 2}
   range: 5
-  centrePoint: {fileID: 859056830824662650}
+  centerPoint: {fileID: 859056830824662650}
   enemyType: {fileID: 11400000, guid: 01f38deca48adff48b7fc23c2024cd0c, type: 2}
 --- !u!65 &859056830824662644
 BoxCollider:

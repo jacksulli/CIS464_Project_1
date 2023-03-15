@@ -10,7 +10,6 @@ public class Periscope : MonoBehaviour
     {
         player = GetComponentInParent<EnemySubmarine>().player;
     }
-    // Update is called once per frame
     void Update()
     {
         transform.LookAt(player);

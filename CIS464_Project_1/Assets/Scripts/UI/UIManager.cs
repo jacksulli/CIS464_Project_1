@@ -30,10 +30,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        livesLeftText.text = livesManager.value.ToString();
-        enemyLeftText.text = enemiesManager.value.ToString();
+        livesLeftText.text = livesManager.value.ToString(); //Set the lives text to be based on the scriptable object livesManager
+        enemyLeftText.text = enemiesManager.value.ToString(); //Set the enemy left text to be based on the scriptable object livesManager
 
-        levelText.text = "Level: " + SceneManager.GetActiveScene().buildIndex.ToString();
+        levelText.text = "Level: " + SceneManager.GetActiveScene().buildIndex.ToString(); //Create level text based on the build index. Ideally there would be a scriptable object storing this
 
         StartCoroutine(StartSequence());
     }
@@ -45,6 +45,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
+        //Set the UI to be a listener to the events in the livesManager and enemiesManager so the UI will change whenever the values of those objects change
         livesManager.livesChangeEvent.AddListener(ChangeLivesValue);
         enemiesManager.enemiesLeftEvent.AddListener(ChangeEnemyLeftValue);
     }
