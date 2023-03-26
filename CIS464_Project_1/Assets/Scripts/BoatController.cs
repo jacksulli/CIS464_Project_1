@@ -16,6 +16,7 @@ public class BoatController : MonoBehaviour
     private bool freezeControls = true; //Controls whether controls are frozen or not
 
     public EnemiesLeftSO enemiesManager; //Reference to the enemies manager scriptable object
+    [SerializeField] private PlayerStats playerStats; //Reference to the player stats SO which controls the final game score
 
     [SerializeField] private GameObject sonarPingObject; //Sonar ping that appears over enemy boats
 
@@ -104,6 +105,13 @@ public class BoatController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f); // Wait two seconds
         AudioManager.Instance.PlaySound("ShipBell"); //Play ship bell sound
+        Debug.Log("Here1");
+        Debug.Log(AudioManager.Instance.musicPlaying);
+        if (AudioManager.Instance.musicPlaying == false)
+        {
+            Debug.Log("Here2");
+            AudioManager.Instance.PlayRandomTrack();
+        }
         ToggleFreezeControls(); //Unfreeze controls
     }
 
@@ -218,8 +226,9 @@ public class BoatController : MonoBehaviour
     {
         if(canDie)
         {
+            canDie = false;
             livesManager.DecreaseLives(1); //Subtract one from the lives counter
-
+            playerStats.playerDeaths += 1;
             AudioManager.Instance.PlaySound("Explosion");
 
             Instantiate(explosion, transform.position, transform.rotation); //Create an explosion effect

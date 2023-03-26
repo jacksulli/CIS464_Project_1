@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class EnemiesLeftSO : ScriptableObject
 {
     public int value = 1;
+    public int enemiesPerLevel;
 
     [System.NonSerialized]
     public UnityEvent<int> enemiesLeftEvent; //Events used to decouple code from UI.

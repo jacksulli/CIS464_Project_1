@@ -786,18 +786,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6967445269828227697, guid: fab23d2993b201f47960d683ad913d92, type: 3}
-      propertyPath: sfxSounds.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6967445269828227697, guid: fab23d2993b201f47960d683ad913d92, type: 3}
-      propertyPath: sfxSounds.Array.data[9].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: e9a7be0d108fc5e4cb02698d992d2ffa, type: 3}
-    - target: {fileID: 6967445269828227697, guid: fab23d2993b201f47960d683ad913d92, type: 3}
-      propertyPath: sfxSounds.Array.data[9].name
-      value: ExplosionDebris
-      objectReference: {fileID: 0}
     - target: {fileID: 6967445269828227698, guid: fab23d2993b201f47960d683ad913d92, type: 3}
       propertyPath: m_RootOrder
       value: 5

@@ -19,4 +19,4 @@ MonoBehaviour:
   shotCount: 1
   torpedoSpeed: 3
   subSpeed: 0.5
-  sharpShooter: 1
+  sharpShooter: 0

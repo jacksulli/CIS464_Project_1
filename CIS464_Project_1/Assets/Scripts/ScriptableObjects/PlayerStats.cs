@@ -8,11 +8,14 @@ public class PlayerStats : ScriptableObject
 {
     public int enemiesKilled = 10;
     public int playerDeaths = 10;
-    public int time = 0;
     public int currentLevel = 0;
 
-    float startTime;
-    float endTime;
+    public float startTime;
+    public float endTime;
+
+    public float time;
+
+    public bool inDebugMode = false;
 
     [System.NonSerialized]
     public UnityEvent levelChangeEvent;
@@ -44,9 +47,18 @@ public class PlayerStats : ScriptableObject
         startTime = Time.time;
     }
 
-    public float EndTimeCounter()
+    public void EndTimeCounter()
     {
         endTime = Time.time;
-        return endTime - startTime;
+        time = endTime - startTime;
+    }
+
+    public void ResetStats()
+    {
+        enemiesKilled = 0;
+        playerDeaths = 0;
+        currentLevel = 1;
+        startTime = 0;
+        endTime = 0;
     }
 }

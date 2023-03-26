@@ -85,6 +85,7 @@ public class EnemySubmarine : MonoBehaviour
         RaisePeriscope();
         yield return new WaitForSeconds(2f);
         LowerPeriscope();
+        enemiesLeft.enemiesPerLevel = enemiesLeft.value;
         yield return new WaitForSeconds(1f);
         StartCoroutine(Attack());
     }
@@ -169,17 +170,20 @@ public class EnemySubmarine : MonoBehaviour
                 {
                     Debug.Log(direction);
                     instance.velocity = (direction) * torpedoSpeed; //Fire the torpedo in the direction calculated by InterceptionDirection function
+                    instance.transform.LookAt(direction);
                 }
                 else
                 {
                     //Just fire at the player's current position
                     //Set the velocity direction of the torpedo. Since we normalize it, its magnitude will be whatever the variable torpedoSpeed is
                     instance.velocity = (target.transform.position - transform.position).normalized * torpedoSpeed;
+                    instance.transform.LookAt(target.transform.position);
                 }
             }
             else
             {
                 instance.velocity = (target.transform.position - transform.position).normalized * torpedoSpeed;
+                instance.transform.LookAt(target.transform.position);
             }
             
         }

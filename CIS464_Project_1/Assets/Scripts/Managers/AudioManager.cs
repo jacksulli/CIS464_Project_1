@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] musicSounds, sfxSounds; //Array for SFX and Music
     public AudioSource musicSource, sfxSource;
+    public bool musicPlaying;
 
 
     private void Awake()
@@ -39,6 +40,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             musicSource.PlayOneShot(s.clip); //Play the music
+            musicPlaying = true;
         }
     }
 
@@ -60,5 +62,15 @@ public class AudioManager : MonoBehaviour
     public void StopMusic()
     {
         musicSource.Stop();
+        musicPlaying = false;
+    }
+
+    public void PlayRandomTrack()
+    {
+        Sound s = musicSounds[UnityEngine.Random.Range(1, musicSounds.Length)]; //Find the music with the name name being inputted
+
+        musicSource.PlayOneShot(s.clip); //Play the music
+        musicPlaying = true;
+
     }
 }

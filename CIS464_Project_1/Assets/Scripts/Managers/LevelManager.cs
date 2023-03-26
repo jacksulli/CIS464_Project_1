@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     public GameObject lossMenu;
     public GameObject winText;
     public GameObject winImage;
+    [SerializeField] private GameObject scoreSheet;
     [SerializeField] private int finalLevelID = 7;    
     
 
@@ -33,6 +34,7 @@ public class LevelManager : MonoBehaviour
     public void Loss()
     {
         lossMenu.SetActive(true);
+        playerStats.EndTimeCounter();
         Cursor.visible = true; //Turn off mouse cursor
         Cursor.lockState = CursorLockMode.None;
     }
@@ -105,11 +107,13 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator WinLevel()
     {
-        
-
+        playerStats.enemiesKilled += enemiesManager.enemiesPerLevel;
+        enemiesManager.enemiesPerLevel = 0;
+        playerStats.EndTimeCounter();
         if(SceneManager.GetActiveScene().buildIndex == finalLevelID)
         {
             winImage.SetActive(true);
+            scoreSheet.SetActive(true);
             AudioManager.Instance.StopMusic();
             AudioManager.Instance.PlayMusic("VictoryTrack");
             yield return new WaitForSeconds(20f);

@@ -16,18 +16,14 @@ public class MainMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void StartGame()
     {
         AudioManager.Instance.PlaySound("Click");
         livesManager.value = 5;
-        playerStats.SetLevel(1);
-        AudioManager.Instance.PlayMusic("Track_1");
+        playerStats.ResetStats();
+        playerStats.StartTimeCounter();
+
         SceneManager.LoadScene(1);
     }
 
