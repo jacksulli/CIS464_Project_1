@@ -1957,6 +1957,10 @@ PrefabInstance:
       propertyPath: playerBoat
       value: 
       objectReference: {fileID: 7976783942598874000}
+    - target: {fileID: 2558248382568938431, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 11400000, guid: ab8688fd7b6e8714fb3f4ecaf114e3fb, type: 2}
     - target: {fileID: 2558248382929045109, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
       propertyPath: m_RootOrder
       value: 0

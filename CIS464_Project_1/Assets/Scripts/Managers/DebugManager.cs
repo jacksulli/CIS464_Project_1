@@ -7,24 +7,27 @@ public class DebugManager : MonoBehaviour
     public BoatController playerBoat;
     public PlayerLivesSO livesManager;
     public LevelManager levelManager;
+    public PlayerStats playerStats;
     public GameObject debugManager;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if(playerStats.inDebugMode == true)
         {
-            Debug.Log("Debug Mode");
-            if (debugManager.activeSelf)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                debugManager.SetActive(false);
-            }
-            else
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                debugManager.SetActive(true);
+                if (debugManager.activeSelf)
+                {
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    debugManager.SetActive(false);
+                }
+                else
+                {
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    debugManager.SetActive(true);
+                }
             }
         }
     }

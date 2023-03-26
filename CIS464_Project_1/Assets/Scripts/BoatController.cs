@@ -105,11 +105,8 @@ public class BoatController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f); // Wait two seconds
         AudioManager.Instance.PlaySound("ShipBell"); //Play ship bell sound
-        Debug.Log("Here1");
-        Debug.Log(AudioManager.Instance.musicPlaying);
         if (AudioManager.Instance.musicPlaying == false)
         {
-            Debug.Log("Here2");
             AudioManager.Instance.PlayRandomTrack();
         }
         ToggleFreezeControls(); //Unfreeze controls
