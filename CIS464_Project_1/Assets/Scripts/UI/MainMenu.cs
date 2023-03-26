@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public PlayerLivesSO livesManager;
+    public PlayerStats playerStats;
     public GameObject optionsMenu;
     public GameObject buttonsHolder;
     // Start is called before the first frame update
@@ -25,6 +26,8 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.Instance.PlaySound("Click");
         livesManager.value = 5;
+        playerStats.SetLevel(1);
+        AudioManager.Instance.PlayMusic("Track_1");
         SceneManager.LoadScene(1);
     }
 

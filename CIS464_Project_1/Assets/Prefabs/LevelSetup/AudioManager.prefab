@@ -174,7 +174,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e900abd3bd8bc724697544e091a98051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSounds: []
+  musicSounds:
+  - name: VictoryTrack
+    clip: {fileID: 8300000, guid: 301f9981879873f4c862b9e0c4f950a8, type: 3}
+  - name: Track_1
+    clip: {fileID: 8300000, guid: 2e6ec1b8d605e704f8f24605ebb2b6ff, type: 3}
+  - name: Track_2
+    clip: {fileID: 8300000, guid: 9de7c960ff893d745be9aba50008a187, type: 3}
+  - name: Track_3
+    clip: {fileID: 8300000, guid: c51a768005605dc49b3bcff3bd89ac9b, type: 3}
+  - name: Track_4
+    clip: {fileID: 8300000, guid: 18babe4f293c4744f84f92e3a5064af7, type: 3}
   sfxSounds:
   - name: Explosion
     clip: {fileID: 8300000, guid: ad60c79cf7da9f845b70df5bcc5799bb, type: 3}
@@ -246,7 +256,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.213
   m_Pitch: 1
   Loop: 0
   Mute: 0

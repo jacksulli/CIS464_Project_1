@@ -8,17 +8,16 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
 
-    [SerializeField]
-    private TextMeshProUGUI livesLeftText;
 
-    [SerializeField]
-    private TextMeshProUGUI enemyLeftText;
+    [SerializeField] private TextMeshProUGUI livesLeftText;
 
-    [SerializeField]
-    private PlayerLivesSO livesManager;
+    [SerializeField] private TextMeshProUGUI enemyLeftText;
 
-    [SerializeField]
-    private EnemiesLeftSO enemiesManager;
+    [SerializeField]  private PlayerLivesSO livesManager;
+
+    [SerializeField]  private EnemiesLeftSO enemiesManager;
+
+    [SerializeField] private PlayerStats playerStats;
 
     public GameObject lossMenuObject;
 
@@ -27,6 +26,10 @@ public class UIManager : MonoBehaviour
     public GameObject roundStart;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI enemiesText;
+
+    //Escape Menu Info:
+    private bool escapeMenuOpen = false;
+    [SerializeField] private GameObject escapeMenu;
 
     private void Start()
     {
@@ -40,7 +43,17 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(escapeMenuOpen)
+            {
+                TurnOffEscapeMenu();
+            }
+            else
+            {
+                TurnOnEscapeMenu();
+            }
+        }
     }
     // Start is called before the first frame update
     void OnEnable()
@@ -55,6 +68,22 @@ public class UIManager : MonoBehaviour
     {
         livesManager.livesChangeEvent.RemoveListener(ChangeLivesValue);
         enemiesManager.enemiesLeftEvent.RemoveListener(ChangeEnemyLeftValue);
+    }
+
+    public void TurnOnEscapeMenu()
+    {
+        escapeMenuOpen = true;
+        escapeMenu.SetActive(true);
+        Cursor.visible = true; //Turn on mouse cursor
+        Cursor.lockState = CursorLockMode.None; //Unlock mouse Cursor
+    }
+
+    public void TurnOffEscapeMenu()
+    {
+        escapeMenuOpen = false;
+        escapeMenu.SetActive(false);
+        Cursor.visible = false; //Turn off mouse cursor
+        Cursor.lockState = CursorLockMode.Locked; //Lock mouse Cursor
     }
 
     public void ChangeLivesValue(int amount)

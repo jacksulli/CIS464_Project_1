@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyType", menuName = "ScriptableObjects/EnemyType")]
 public class EnemyType : ScriptableObject
 {
+    public string enemyDescription;
+
     public bool canMove = false;
 
     public bool homingTorpedo = false;
@@ -14,6 +16,8 @@ public class EnemyType : ScriptableObject
     public float torpedoSpeed = 3f;
 
     public float subSpeed = 0.5f;
+
+    public bool sharpShooter = false;
 
 
 }

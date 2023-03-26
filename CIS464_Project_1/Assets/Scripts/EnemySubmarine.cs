@@ -26,6 +26,7 @@ public class EnemySubmarine : MonoBehaviour
     [SerializeField] private EnemiesLeftSO enemiesLeft; //Reference to the enemies left scriptable object
 
     private float torpedoSpeed; //torpedo speed, determined by enemy type scriptable object
+    private bool isSharpshooter;
 
     private Rigidbody target;
 
@@ -45,6 +46,7 @@ public class EnemySubmarine : MonoBehaviour
         agent = GetComponent<NavMeshAgent>(); //Get a reference to the object's navMeshAgent
         agent.speed = enemyType.subSpeed; //Set enemy's speed based on the enemy type
         torpedoSpeed = enemyType.torpedoSpeed; //Set torpedo speed based on enemy type
+        isSharpshooter = enemyType.sharpShooter;
 
 
         waterRipple = waterRippleObject.GetComponent<ParticleSystem>().emission; //Get a reference to the water ripple particle effect
@@ -160,20 +162,27 @@ public class EnemySubmarine : MonoBehaviour
         {
             var instance = Instantiate(torpedo, transform.position, rotation: Quaternion.identity);  //Instantiate the torpedo object, reset rotation
 
-            //If it can find a path to intercept the player, fire in that direction
-            if (InterceptionDirection(a: target.transform.position, b: transform.position, vA: target.velocity, torpedoSpeed, result: out var direction))
+            if(isSharpshooter)
             {
-                instance.velocity = direction * torpedoSpeed; //Fire the torpedo in the direction calculated by InterceptionDirection function
+                //If it can find a path to intercept the player, fire in that direction
+                if (InterceptionDirection(a: target.transform.position, b: transform.position, vA: target.velocity, torpedoSpeed, result: out var direction))
+                {
+                    Debug.Log(direction);
+                    instance.velocity = (direction) * torpedoSpeed; //Fire the torpedo in the direction calculated by InterceptionDirection function
+                }
+                else
+                {
+                    //Just fire at the player's current position
+                    //Set the velocity direction of the torpedo. Since we normalize it, its magnitude will be whatever the variable torpedoSpeed is
+                    instance.velocity = (target.transform.position - transform.position).normalized * torpedoSpeed;
+                }
             }
             else
             {
-                //Just fire at the player's current position
-                //Set the velocity direction of the torpedo. Since we normalize it, its magnitude will be whatever the variable torpedoSpeed is
                 instance.velocity = (target.transform.position - transform.position).normalized * torpedoSpeed;
             }
+            
         }
-
-
     }
 
 

@@ -29,7 +29,17 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayMusic(string _name)
     {
+        Sound s = Array.Find(musicSounds, x => x.name == _name); //Find the music with the name name being inputted
 
+        //If there is no music with that name
+        if (s == null)
+        {
+            Debug.Log("Music " + _name + " Not Found");
+        }
+        else
+        {
+            musicSource.PlayOneShot(s.clip); //Play the music
+        }
     }
 
     public void PlaySound(string _name)
@@ -39,11 +49,16 @@ public class AudioManager : MonoBehaviour
         //If there is no sound with that name
         if(s == null)
         {
-            Debug.Log("Sound Not Found");
+            Debug.Log("Sound " + _name + " Not Found");
         }
         else
         {
             sfxSource.PlayOneShot(s.clip); //Play the sound
         }
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
     }
 }

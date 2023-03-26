@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044bc00f333a8a9419af0210d2386723, type: 3}
   m_Name: Tier_1
   m_EditorClassIdentifier: 
+  enemyDescription: This enemy is the lowest tier, and shoots slow, unpredictive
+    torpedoes.
   canMove: 0
+  homingTorpedo: 0
   shotCount: 1
   torpedoSpeed: 3
   subSpeed: 0.5
+  sharpShooter: 1

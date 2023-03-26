@@ -2804,6 +2804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livesManager: {fileID: 11400000, guid: 6371e19c7be9ea44dbd8b0512f8565ca, type: 2}
+  playerStats: {fileID: 11400000, guid: ab8688fd7b6e8714fb3f4ecaf114e3fb, type: 2}
   optionsMenu: {fileID: 582133298}
   buttonsHolder: {fileID: 1590490914}
 --- !u!4 &1910867231

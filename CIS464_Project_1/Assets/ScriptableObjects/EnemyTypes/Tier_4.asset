@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044bc00f333a8a9419af0210d2386723, type: 3}
   m_Name: Tier_4
   m_EditorClassIdentifier: 
+  enemyDescription: Shoots slow, unpredictive, and shoots three times
   canMove: 0
   homingTorpedo: 0
   shotCount: 3
   torpedoSpeed: 4
   subSpeed: 0.5
+  sharpShooter: 0

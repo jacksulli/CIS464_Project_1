@@ -8,11 +8,12 @@ public class LevelManager : MonoBehaviour
 {
     public PlayerLivesSO livesManager;
     public EnemiesLeftSO enemiesManager;
-    public FloatVariable currentLevel;
+    public PlayerStats playerStats;
 
     public GameObject lossMenu;
     public GameObject winText;
     public GameObject winImage;
+    [SerializeField] private int finalLevelID = 7;    
     
 
     public int livesToAdd;
@@ -29,7 +30,6 @@ public class LevelManager : MonoBehaviour
         
     }
 
-
     public void Loss()
     {
         lossMenu.SetActive(true);
@@ -40,23 +40,26 @@ public class LevelManager : MonoBehaviour
     public void NextLevel()
     {
         livesManager.IncreaseLives(livesToAdd);
-        currentLevel.value += 1;
+        playerStats.currentLevel += 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void MainMenu()
     {
-        currentLevel.value = 1;
+        playerStats.currentLevel = 1;
+        AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(0);
     }
     public void Restart()
     {
+        playerStats.currentLevel = 1;
         livesManager.value = 5;
         SceneManager.LoadScene(1);
     }
 
     public void PreviousLevel()
     {
+        playerStats.currentLevel -= 1;
         livesManager.value = 5;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
@@ -94,15 +97,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+
     private IEnumerator WinLevel()
     {
         
 
-        if(SceneManager.GetActiveScene().buildIndex == 7)
+        if(SceneManager.GetActiveScene().buildIndex == finalLevelID)
         {
             winImage.SetActive(true);
-            yield return new WaitForSeconds(3f);
+            AudioManager.Instance.StopMusic();
+            AudioManager.Instance.PlayMusic("VictoryTrack");
+            yield return new WaitForSeconds(20f);
+            AudioManager.Instance.StopMusic();
             MainMenu();
         }
         else
