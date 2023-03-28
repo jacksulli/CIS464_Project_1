@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class BoatController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class BoatController : MonoBehaviour
     private Camera cam; //Main camera
     private bool canDie = true; //Controls whether player is invincible or not
     private bool freezeControls = true; //Controls whether controls are frozen or not
+    
+    private PlayerController controls; //Controls utilizing the Input System
 
     public EnemiesLeftSO enemiesManager; //Reference to the enemies manager scriptable object
     [SerializeField] private PlayerStats playerStats; //Reference to the player stats SO which controls the final game score
@@ -62,6 +65,9 @@ public class BoatController : MonoBehaviour
         rb = GetComponent<Rigidbody>(); //Get reference to the boat's rigidbody
         Cursor.visible = false; //Turn off mouse cursor
         Cursor.lockState = CursorLockMode.Locked; //Lock mouse Cursor
+
+        controls = new PlayerController(); //player controls using the Input System
+        controls.Gameplay.DepthCharge.performed += ctx => DropDepthCharge();
 
         //Get reference to wake particle systems
         wakeParticle = transform.GetChild(2).GetComponent<ParticleSystem>().emission;
@@ -145,6 +151,7 @@ public class BoatController : MonoBehaviour
     void OnEnable()
     {
         enemiesManager.enemiesLeftEvent.AddListener(LevelOver); //Make this script a listener for the LevelOver event from the enemiesManager Scriptable Object
+        controls.Gameplay.Enable(); //enable the input system
     }
 
     private void SonarInput()

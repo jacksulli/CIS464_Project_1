@@ -1,0 +1,54 @@
+{
+    "name": "Player Controller",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "62e9755c-f031-4aed-a0fe-2a7f3e087872",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "287be235-cfcd-48d5-8b06-afac2686a8f0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "DepthCharge",
+                    "type": "Button",
+                    "id": "dabaff0a-d8d8-441b-a755-7acfc50f33ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "985d831f-a5ce-416c-8f82-fb479637ba5e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8944d0c-9c67-4109-b100-cff15077df7f",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DepthCharge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
