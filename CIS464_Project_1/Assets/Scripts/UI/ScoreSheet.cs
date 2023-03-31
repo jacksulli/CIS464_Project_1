@@ -36,18 +36,18 @@ public class ScoreSheet : MonoBehaviour
         time = playerStats.time;
         curLevel = playerStats.currentLevel;
 
-        deathsScoreText.text = playerDeaths.ToString();
-        killsScoreText.text = enemiesKilled.ToString();
-        timeScoreText.text = time.ToString();
-        levelScoreText.text = curLevel.ToString();
+        deathsScoreText.text = "Deaths: " + playerDeaths.ToString();
+        killsScoreText.text = "Kills: " + enemiesKilled.ToString();
+        timeScoreText.text = "Time: " + time.ToString();
+        levelScoreText.text = "Level: " + curLevel.ToString();
 
         if (!playerStats.inDebugMode)
         {
-            totalScoreText.text = CreateScore().ToString();
+            totalScoreText.text = "Total Score: " + CreateScore().ToString();
         }
         else
         {
-            totalScoreText.text = "No Score (Cheat Mode Enabled)";
+            totalScoreText.text = "No Score (Cheats Enabled)";
         }
 
     }
