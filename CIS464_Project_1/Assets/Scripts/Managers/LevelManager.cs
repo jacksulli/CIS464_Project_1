@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
     {
         lossMenu.SetActive(true);
         playerStats.EndTimeCounter();
+        AudioManager.Instance.StopMusic();
         Cursor.visible = true; //Turn off mouse cursor
         Cursor.lockState = CursorLockMode.None;
     }
@@ -55,14 +56,14 @@ public class LevelManager : MonoBehaviour
     public void Restart()
     {
         playerStats.currentLevel = 1;
-        livesManager.value = 5;
+        livesManager.value = 3;
         SceneManager.LoadScene(1);
     }
 
     public void PreviousLevel()
     {
         playerStats.currentLevel -= 1;
-        livesManager.value = 5;
+        livesManager.value = 3;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 

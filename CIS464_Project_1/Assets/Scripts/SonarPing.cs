@@ -11,14 +11,11 @@ public class SonarPing : MonoBehaviour
     {
         
         StartCoroutine(LifeCycle());
-    }
 
-    private void Update()
-    {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, sonarRadius);
         foreach (var hitCollider in hitColliders)
         {
-            if(hitCollider.gameObject.tag == "Enemy")
+            if (hitCollider.gameObject.tag == "Enemy")
             {
                 EnemySubmarine theEnemy = hitCollider.gameObject.GetComponent<EnemySubmarine>();
                 Instantiate(enemyDetected, theEnemy.transform.position, theEnemy.transform.rotation, this.transform);

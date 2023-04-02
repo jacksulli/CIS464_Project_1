@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         AudioManager.Instance.PlaySound("Click");
-        livesManager.value = 5;
+        livesManager.value = 3;
         playerStats.ResetStats();
         playerStats.StartTimeCounter();
 

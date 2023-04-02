@@ -249,7 +249,8 @@ public class BoatController : MonoBehaviour
                 levelManager.Loss();
             }
 
-            this.enabled = false;
+            Debug.Log("Disabling Boat");
+            this.gameObject.SetActive(false);
         }
         
     }
