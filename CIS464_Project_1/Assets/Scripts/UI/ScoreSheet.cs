@@ -1,3 +1,4 @@
+//This script controls the game score UI elements
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class ScoreSheet : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelScoreText;
     [SerializeField] private TextMeshProUGUI totalScoreText;
 
-    //List of modifiers to adjust the score
+    //List of modifiers to adjust the score for calculating the final score
     [SerializeField] private float deathsScoreModifier = 1f;
     [SerializeField] private float killsScoreModifier = 1f;
     [SerializeField] private float timeScoreModifier = 1f;
@@ -31,11 +32,12 @@ public class ScoreSheet : MonoBehaviour
     public void Start()
     {
         
-        enemiesKilled = playerStats.enemiesKilled;
-        playerDeaths = playerStats.playerDeaths;
-        time = playerStats.time;
-        curLevel = playerStats.currentLevel;
+        enemiesKilled = playerStats.enemiesKilled; //Get the total amount of enemies killed from the player stats SO
+        playerDeaths = playerStats.playerDeaths; //Get the total amount of player deaths
+        time = playerStats.time; //Get the time it took the player to finish the game
+        curLevel = playerStats.currentLevel; //Get the current level
 
+        //Set the text in the UI
         deathsScoreText.text = "Deaths: " + playerDeaths.ToString();
         killsScoreText.text = "Kills: " + enemiesKilled.ToString();
         timeScoreText.text = "Time: " + time.ToString();
@@ -52,6 +54,7 @@ public class ScoreSheet : MonoBehaviour
 
     }
 
+    //Create a final score based on the indivudal elements
     private float CreateScore()
     {
         float score = (enemiesKilled * killsScoreModifier) + (curLevel * levelScoreModifier) + (1/time * timeScoreModifier) - (playerDeaths * deathsScoreModifier);

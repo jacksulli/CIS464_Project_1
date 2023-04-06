@@ -214,6 +214,7 @@ public class BoatController : MonoBehaviour
         
     }
 
+    //Turns the bool freezeControls to the opposite of what it currently is
     private void ToggleFreezeControls()
     {
         if(freezeControls)
@@ -263,6 +264,7 @@ public class BoatController : MonoBehaviour
     }
 
     //Increase speed and rotationspeed 
+    //Rotation speed is automatically increased as well, since the boat needs to turn faster as well
     public void IncreaseSpeed()
     {
         movementSpeed += 50f;
