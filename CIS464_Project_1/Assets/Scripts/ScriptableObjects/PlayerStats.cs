@@ -1,3 +1,8 @@
+/*This script contains assorted info about the player that needs to be separate from the game.
+ * The main function of this scriptable object is to store information related to the player's score, and time the player.
+ * It also has information about if the player is in debug mode or not, and how many lives the player should start with.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +11,15 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "PlayerStatsSO", menuName = "ScriptableObjects/PlayerStats")]
 public class PlayerStats : ScriptableObject
 {
+    [Header("Score Info")]
     public int enemiesKilled = 10;
     public int playerDeaths = 10;
     public int currentLevel = 0;
-
     public float startTime;
     public float endTime;
-
     public float time;
 
+    [Header("Player Info")]
     public bool inDebugMode = false;
 
     [System.NonSerialized]
@@ -60,5 +65,17 @@ public class PlayerStats : ScriptableObject
         currentLevel = 1;
         startTime = 0;
         endTime = 0;
+    }
+
+    public void ToggleDebug()
+    {
+        if(inDebugMode)
+        {
+            inDebugMode = false;
+        }
+        else
+        {
+            inDebugMode = true;
+        }
     }
 }

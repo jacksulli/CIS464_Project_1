@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
     public PlayerLivesSO livesManager; //Gets a reference to the PlayerLives scriptable object in the game files
     public PlayerStats playerStats; //Gets a reference to the PlayerStats scriptable object in the game files
-    public GameObject optionsMenu; //Gets a reference to the options menu UI gameobject
+    public GameObject controlsMenu; //Gets a reference to the options menu UI gameobject
     public GameObject buttonsHolder; //Gets a reference to the UI gameobject that holds the buttons
+    [SerializeField] private GameObject optionsMenu; //Gets a reference to the options menu
     
     void Start()
     {
@@ -35,6 +38,22 @@ public class MainMenu : MonoBehaviour
     }
 
     //Open the options menu in the main menu
+    public void OpenControlsMenu()
+    {
+        AudioManager.Instance.PlaySound("Click");
+        controlsMenu.SetActive(true); //Turn on the options menu
+        buttonsHolder.SetActive(false); //Turn off the inital main menu buttons
+    }
+
+    //Close the options menu
+    public void CloseControlsMenu()
+    {
+        AudioManager.Instance.PlaySound("Click");
+        controlsMenu.SetActive(false); //Turn off the options menu
+        buttonsHolder.SetActive(true); //Turn back on the inital main menu buttons
+    }
+
+
     public void OpenOptionsMenu()
     {
         AudioManager.Instance.PlaySound("Click");
@@ -49,4 +68,33 @@ public class MainMenu : MonoBehaviour
         optionsMenu.SetActive(false); //Turn off the options menu
         buttonsHolder.SetActive(true); //Turn back on the inital main menu buttons
     }
+
+
+    #region MasterVolumeInfo
+
+    //Code taken and modified from https://www.youtube.com/watch?v=_m6nTQOMFl0
+    [SerializeField] private Slider soundSlider;
+    [SerializeField] private AudioMixer masterMixer;
+
+    public void SetVolume(float _value)
+    {
+        if (_value < 1)
+        {
+            _value = 0.001f;
+        }
+
+        RefreshSlider(_value);
+        masterMixer.SetFloat("MasterVolume", Mathf.Log10(_value / 100) * 20f); //Change sound based on log not linear, since thats how decibels work
+    }
+
+    public void SetVolumeFromSlider()
+    {
+        SetVolume(soundSlider.value);
+    }
+
+    public void RefreshSlider(float _value)
+    {
+        soundSlider.value = _value;
+    }
+    #endregion MasterVolumeInfo
 }

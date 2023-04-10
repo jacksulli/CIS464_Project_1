@@ -8,15 +8,10 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private UIManager uiManager;
     public PlayerLivesSO livesManager; //Reference to the Player Lives scriptable object
     public EnemiesLeftSO enemiesManager; //Reference to the Enemies Left scriptable object
     public PlayerStats playerStats; 
-
-    //These three should be moved to the UI manager
-    public GameObject lossMenu; //Reference to the loss menu UI
-    public GameObject winText; //Reference to the You Win! text that displays after a match
-    public GameObject winImage; //Reference to the Winning image
-    [SerializeField] private GameObject scoreSheet;
 
     //Reference to the Build ID of the last level of the game. Right now it's level 7
     //This causes the game to end after the completion of this level
@@ -39,7 +34,7 @@ public class LevelManager : MonoBehaviour
     //Theoretically this should be in the UI Manager
     public void Loss()
     {
-        lossMenu.SetActive(true); //Turn on the loss menu
+        uiManager.TurnOnLossMenu(); //Turn on the loss menu
         playerStats.EndTimeCounter(); //End the timer counting the player's time in-game
         AudioManager.Instance.StopMusic(); //Turn off all music
         Cursor.visible = true; //Turn off mouse cursor
@@ -79,9 +74,10 @@ public class LevelManager : MonoBehaviour
     }
 
     //Resets the current level
+    //This is called from the BoatController script. When the player dies and still has lives left, this is called to reset
     public void ResetCurrentLevel()
     {
-        StartCoroutine(ResetCycle()); //Calls a coroutine, this can probably be removed
+        StartCoroutine(ResetCycle()); //Calls a coroutine
     }
     void OnEnable()
     {
@@ -128,8 +124,8 @@ public class LevelManager : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex == finalLevelID) //If this level is the final level, win the entire game
         {
             //This should also theoretically be on the UI manager
-            winImage.SetActive(true); //Turn on the game win image
-            scoreSheet.SetActive(true); //Turn on the score panel
+            uiManager.TurnOnWinImage(); //Turn on the game win image
+            uiManager.TurnOnScoreSheet();//Turn on the score panel
             AudioManager.Instance.StopMusic(); //Turn off music
             AudioManager.Instance.PlayMusic("VictoryTrack"); //play the victory music
             yield return new WaitForSeconds(20f); //Wait 20 seconds
@@ -138,7 +134,7 @@ public class LevelManager : MonoBehaviour
         }
         else //Else just win the current level
         {
-            winText.SetActive(true); //Turn on the generic win text
+            uiManager.TurnOnWinText(); //Turn on the generic win text
             yield return new WaitForSeconds(4f);
             NextLevel(); //Go to the next level
         }

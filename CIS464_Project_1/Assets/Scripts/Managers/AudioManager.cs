@@ -13,7 +13,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource, sfxSource;
     public bool musicPlaying;
 
-
     private void Awake()
     {
         //Make this object a singleton so there can only be one in the project
@@ -28,6 +27,7 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void PlayMusic(string _name)
     {
         Sound s = Array.Find(musicSounds, x => x.name == _name); //Find the music with the name name being inputted
@@ -58,13 +58,11 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(s.clip); //Play the sound
         }
     }
-
     public void StopMusic()
     {
         musicSource.Stop();
         musicPlaying = false;
     }
-
     public void PlayRandomTrack()
     {
         Sound s = musicSounds[UnityEngine.Random.Range(1, musicSounds.Length)]; //Find the music with the name name being inputted
@@ -73,4 +71,6 @@ public class AudioManager : MonoBehaviour
         musicPlaying = true;
 
     }
+
+
 }

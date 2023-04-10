@@ -27,6 +27,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI enemiesText;
 
+    [SerializeField] private GameObject lossMenu; //Reference to the loss menu UI
+    [SerializeField] private GameObject winText; //Reference to the You Win! text that displays after a match
+    [SerializeField] private GameObject winImage; //Reference to the Winning image
+    [SerializeField] private GameObject scoreSheet;
+
     //Escape Menu Info:
     private bool escapeMenuOpen = false;
     [SerializeField] private GameObject escapeMenu;
@@ -95,6 +100,26 @@ public class UIManager : MonoBehaviour
     {
         enemyLeftText.text = amount.ToString();
         enemiesText.text = "Enemies: " + amount.ToString();
+    }
+
+    public void TurnOnLossMenu()
+    {
+
+    }
+
+    public void TurnOnWinText()
+    {
+        winText.SetActive(true);
+    }
+
+    public void TurnOnScoreSheet()
+    {
+        scoreSheet.SetActive(true);
+    }
+
+    public void TurnOnWinImage()
+    {
+        winImage.SetActive(true);
     }
 
     public IEnumerator StartSequence()
