@@ -18,6 +18,7 @@ public class PlayerStats : ScriptableObject
     public float startTime;
     public float endTime;
     public float time;
+    public int finalLevelID;
 
     [Header("Player Info")]
     public bool inDebugMode = false;

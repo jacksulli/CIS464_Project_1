@@ -11,18 +11,19 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private UIManager uiManager;
     public PlayerLivesSO livesManager; //Reference to the Player Lives scriptable object
     public EnemiesLeftSO enemiesManager; //Reference to the Enemies Left scriptable object
-    public PlayerStats playerStats; 
+    public PlayerStats playerStats;
 
     //Reference to the Build ID of the last level of the game. Right now it's level 7
     //This causes the game to end after the completion of this level
-    [SerializeField] private int finalLevelID = 7;    
+    [SerializeField] private int finalLevelID;    
     
     public int livesToAdd = 1; //The amount of lives to add to the player after winning each level
 
     private void Awake()
     {
+        finalLevelID = playerStats.finalLevelID;
         //If somehow the level starts with the player having no lives or less 
-        if(livesManager.value <= 0)
+        if (livesManager.value <= 0)
         {
             livesManager.value = 0; //Reset the lives counter
             livesManager.IncreaseLives(1); //Increase the lives by 1
@@ -121,8 +122,9 @@ public class LevelManager : MonoBehaviour
         playerStats.enemiesKilled += enemiesManager.enemiesPerLevel; //Add the amount of enemies killed to the scoreboard
         enemiesManager.enemiesPerLevel = 0; //Reset the enemies per level value (this is under construction)
         playerStats.EndTimeCounter(); //End the timer counting how long the player has been on the game
-        if(SceneManager.GetActiveScene().buildIndex == finalLevelID) //If this level is the final level, win the entire game
+        if (SceneManager.GetActiveScene().buildIndex == finalLevelID) //If this level is the final level, win the entire game
         {
+            Debug.Log("This is the final level!");
             //This should also theoretically be on the UI manager
             uiManager.TurnOnWinImage(); //Turn on the game win image
             uiManager.TurnOnScoreSheet();//Turn on the score panel

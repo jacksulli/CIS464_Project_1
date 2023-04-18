@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     
     void Start()
     {
+        playerStats.inDebugMode = false;
         Cursor.visible = true; //Make the cursor visible, in case the player is coming from in-game
         Cursor.lockState = CursorLockMode.None; //Unlock the cursor
     }
