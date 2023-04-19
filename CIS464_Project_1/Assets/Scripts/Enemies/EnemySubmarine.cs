@@ -166,11 +166,11 @@ public class EnemySubmarine : MonoBehaviour
             if(isSharpshooter)
             {
                 //If it can find a path to intercept the player, fire in that direction
-                if (InterceptionDirection(a: target.transform.position, b: transform.position, vA: target.velocity, torpedoSpeed, result: out var direction))
+                if (InterceptionDirection(a: target.transform.position, b: transform.position, vA: target.velocity, torpedoSpeed, result: out var direction, targetPosition: out var shootAtPosition))
                 {
-                    Debug.Log(direction);
+                    
                     instance.velocity = (direction) * torpedoSpeed; //Fire the torpedo in the direction calculated by InterceptionDirection function
-                    instance.transform.LookAt(direction);
+                    instance.transform.LookAt(shootAtPosition);
                 }
                 else
                 {
@@ -204,7 +204,7 @@ public class EnemySubmarine : MonoBehaviour
     //Predictive Aiming ----------------------------------------------------
     //Methods found from https://www.youtube.com/watch?v=2zVwug_agr0
 
-    public bool InterceptionDirection(Vector3 a, Vector3 b, Vector3 vA, float sB, out Vector3 result)
+    public bool InterceptionDirection(Vector3 a, Vector3 b, Vector3 vA, float sB, out Vector3 result, out Vector3 targetPosition)
     {
         //Direction from b to a
         var aToB = b - a;
@@ -216,6 +216,7 @@ public class EnemySubmarine : MonoBehaviour
         if (MyMath.SolveQuadratic(a: 1 - r * r, b: 2 * r * dC * Mathf.Cos(alpha), c: -(dC * dC), out var root1, out var root2) == 0)
         {
             result = Vector3.zero;
+            targetPosition = Vector3.zero;
             return false;
         }
 
@@ -223,6 +224,7 @@ public class EnemySubmarine : MonoBehaviour
         var t = dA / sB;
         var c = a + vA * t;
         result = (c - b).normalized;
+        targetPosition = c;
         return true;
 
     }
