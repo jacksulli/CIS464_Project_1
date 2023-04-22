@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 044bc00f333a8a9419af0210d2386723, type: 3}
-  m_Name: Tier_1
+  m_Name: Tier_5
   m_EditorClassIdentifier: 
-  enemyDescription: This enemy is the lowest tier, and shoots slow, unpredictive
-    torpedoes.
+  enemyDescription: 
   canMove: 0
-  homingTorpedo: 0
+  homingTorpedo: 1
   shotCount: 1
-  torpedoSpeed: 3
+  torpedoSpeed: 1
   sharpShooter: 0
   subSpeed: 0.5
-  torpedoRotationSpeed: 0.5
+  torpedoRotationSpeed: 1
   torpedoMesh: {fileID: 3103376389177017567, guid: bfff8c9e10ce973478b9ea8917c97ee9, type: 3}

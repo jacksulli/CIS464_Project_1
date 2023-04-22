@@ -49,6 +49,10 @@ public class Torpedo : MonoBehaviour
                 Instantiate(explosionEffect, transform.position, transform.rotation); //Instantiate the torpedo death explosion at the impact point
                 Destroy(this.gameObject);
             }
+            else if (other.gameObject.tag == "Smoke") //If the torpedo hits a mine
+            {
+
+            }
             else //If the torpedo hits anything else
             {
                 AudioManager.Instance.PlaySound("TorpedoExplosion");
@@ -56,9 +60,5 @@ public class Torpedo : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-        
-        
-        
-
     }
 }

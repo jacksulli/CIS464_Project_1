@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4aefe30d3e725264dbe87732ebf80b92, type: 2}
+  - {fileID: 2100000, guid: df1834a8d05ee9e4aa504a4564b6a96e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,7 +144,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4aefe30d3e725264dbe87732ebf80b92, type: 2}
+  - {fileID: 2100000, guid: df1834a8d05ee9e4aa504a4564b6a96e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,7 +227,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4aefe30d3e725264dbe87732ebf80b92, type: 2}
+  - {fileID: 2100000, guid: df1834a8d05ee9e4aa504a4564b6a96e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -310,7 +310,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4aefe30d3e725264dbe87732ebf80b92, type: 2}
+  - {fileID: 2100000, guid: df1834a8d05ee9e4aa504a4564b6a96e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 859056830824662644}
   - component: {fileID: 247412533}
   m_Layer: 0
-  m_Name: Tier_2_Sub
+  m_Name: Tier_5_Sub
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
   enemiesLeft: {fileID: 11400000, guid: 646327440cf25fe4a9246bf9fb7ae0c7, type: 2}
   range: 5
   centerPoint: {fileID: 0}
-  enemyType: {fileID: 11400000, guid: 308c902be2d00844daa00aa32cc5c78d, type: 2}
+  enemyType: {fileID: 11400000, guid: 47a9d8bd2dd9af34eb0052d626121a3e, type: 2}
 --- !u!65 &859056830824662644
 BoxCollider:
   m_ObjectHideFlags: 0

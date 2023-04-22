@@ -13,16 +13,21 @@ public class EnemyType : ScriptableObject
 
     public bool canMove = false; //Can this submarine move around the map
 
-    //DOESNT WORK RIGHT NOW
     public bool homingTorpedo = false; //Does this submarine shoot torpedoes that follow the player
 
     public int shotCount = 1; //The amount of torpedoes the submarine will fire in one go
 
     public float torpedoSpeed = 3f; //The speed of the torpedo's speed
 
+    public bool sharpShooter = false; //Does the submarine predict where the player moves and fire there
+
     public float subSpeed = 0.5f; //The speed the submarine moves, if it can move
 
-    public bool sharpShooter = false; //Does the submarine predict where the player moves and fire there
+    public float torpedoRotationSpeed = 0.5f; //The speed the submarine moves, if it can move
+
+    public Rigidbody torpedoMesh;
+
+    
 
 
 }

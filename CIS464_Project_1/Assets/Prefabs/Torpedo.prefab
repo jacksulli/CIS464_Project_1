@@ -4823,9 +4823,9 @@ GameObject:
   - component: {fileID: 3103376389177017552}
   - component: {fileID: 3103376389177017567}
   - component: {fileID: 3103376389177017566}
-  - component: {fileID: -8851558364574232363}
+  - component: {fileID: 3103376389177017565}
   m_Layer: 0
-  m_Name: HomingTorpedo
+  m_Name: Torpedo
   m_TagString: Torpedo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4880,7 +4880,7 @@ CapsuleCollider:
   m_Height: 0.14442635
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-8851558364574232363
+--- !u!114 &3103376389177017565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4889,7 +4889,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3103376389177017564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f112636dc3e5cc4f9cae7b1ffee49bb, type: 3}
+  m_Script: {fileID: 11500000, guid: d7062d66f3d167d4f9e956956eed1a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 8765277779488179987, guid: 3469f3ed2f3394e43be8d59e9177e35a, type: 3}
@@ -4954,7 +4954,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cf4ddf50394f0f4cb35bb7e76cea1cc, type: 2}
+  - {fileID: 2100000, guid: 12fd4cb628f067c4c9b61f5588dc3e50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

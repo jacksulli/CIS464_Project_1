@@ -16,6 +16,8 @@ MonoBehaviour:
   canMove: 0
   homingTorpedo: 0
   shotCount: 1
-  torpedoSpeed: 5
-  subSpeed: 0.5
+  torpedoSpeed: 4
   sharpShooter: 1
+  subSpeed: 0.5
+  torpedoRotationSpeed: 0.5
+  torpedoMesh: {fileID: 3103376389177017567, guid: a1eead933a7ec294f823035d4d82ea6f, type: 3}

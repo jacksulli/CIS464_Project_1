@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f80f688dec604f4089f8ed9c9df4ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raycastPoint: {fileID: 0}
 --- !u!1 &859056830824662645
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,13 +435,13 @@ MonoBehaviour:
   maxWaitTime: 10
   periscope: {fileID: 859056830776672254}
   torpedo: {fileID: 3103376389177017567, guid: bfff8c9e10ce973478b9ea8917c97ee9, type: 3}
-  homingTorpedo: {fileID: 3103376389177017564, guid: 7951bca1d3ac26a43bcd527d991b1177, type: 3}
+  homingTorpedo: {fileID: 3103376389177017564, guid: fbbeaff6dc81eec4cb1cbb824b2f81d8, type: 3}
   explosionEffect: {fileID: 4559901993901544462, guid: e98fc855dcd44b844bcc3e580f78b929, type: 3}
   debris: {fileID: 3185373630269957859, guid: 8ecc191720d928847973f80ee67797a4, type: 3}
   waterRippleObject: {fileID: 5023228498562996796}
   enemiesLeft: {fileID: 11400000, guid: 646327440cf25fe4a9246bf9fb7ae0c7, type: 2}
   range: 5
-  centrePoint: {fileID: 859056830824662650}
+  centerPoint: {fileID: 0}
   enemyType: {fileID: 11400000, guid: 841765103c1189247990144528ab83ff, type: 2}
 --- !u!65 &859056830824662644
 BoxCollider:

@@ -13,7 +13,7 @@ public class EnemySubmarine : MonoBehaviour
     [SerializeField] private float maxWaitTime = 15f;
 
     [SerializeField] GameObject periscope; //Reference to periscope game object
-    [SerializeField] Rigidbody torpedo; //Reference to the torpedo when it is fired
+    Rigidbody torpedo; //Reference to the torpedo when it is fired
     [SerializeField] GameObject homingTorpedo;
 
     [SerializeField] GameObject explosionEffect; //Get reference to the explosion effect
@@ -26,6 +26,7 @@ public class EnemySubmarine : MonoBehaviour
     [SerializeField] private EnemiesLeftSO enemiesLeft; //Reference to the enemies left scriptable object
 
     private float torpedoSpeed; //torpedo speed, determined by enemy type scriptable object
+    private float torpedoRotationSpeed; //torpedo rotation speed for homing torpedo, determined by enemy type scriptable object
     private bool isSharpshooter;
 
     private Rigidbody target;
@@ -47,6 +48,8 @@ public class EnemySubmarine : MonoBehaviour
         agent.speed = enemyType.subSpeed; //Set enemy's speed based on the enemy type
         torpedoSpeed = enemyType.torpedoSpeed; //Set torpedo speed based on enemy type
         isSharpshooter = enemyType.sharpShooter;
+        torpedoRotationSpeed = enemyType.torpedoRotationSpeed;
+        torpedo = enemyType.torpedoMesh;
 
 
         waterRipple = waterRippleObject.GetComponent<ParticleSystem>().emission; //Get a reference to the water ripple particle effect
@@ -156,8 +159,12 @@ public class EnemySubmarine : MonoBehaviour
         //STILL UNDER CONSTRUCTION!!!, the homing does not work that well
         if (enemyType.homingTorpedo)
         {
-            GameObject instance = Instantiate(homingTorpedo, transform.position, Quaternion.identity);
+            
+            var instance = Instantiate(homingTorpedo, transform.position, Quaternion.identity);
+            instance.transform.LookAt(player);
             instance.GetComponent<HomingTorpedo>().SetTarget(player.GetChild(0).transform);
+            instance.GetComponent<HomingTorpedo>().SetRotationSpeed(torpedoRotationSpeed);
+            instance.GetComponent<HomingTorpedo>().SetSpeed(torpedoSpeed);
         }
         else
         {

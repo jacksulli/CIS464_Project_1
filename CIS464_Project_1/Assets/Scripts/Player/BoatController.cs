@@ -50,6 +50,7 @@ public class BoatController : MonoBehaviour
     [Header("Other")]
     [SerializeField] private GameObject mesh; //Reference to the mesh of the boat object
     [SerializeField] private PlayerLivesSO livesManager; //Reference to the player lives
+    [SerializeField] private GameObject smokeScreen; //Value to clamp velocity
 
     //Cooldown
     public float sonarCoolDown = 5f; //This should be the time it takes a depth charge to explode
@@ -97,6 +98,11 @@ public class BoatController : MonoBehaviour
                         nextFireTime = Time.time + coolDownTime;
                     }
                 }
+            }
+
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                DeploySmokeScreen();
             }
 
             SonarInput(); //Check for the player pressing the sonar button
@@ -154,6 +160,19 @@ public class BoatController : MonoBehaviour
         controls.Gameplay.Enable(); //enable the input system
     }
 
+    private void DeploySmokeScreen()
+    {
+        StartCoroutine(SmokeScreenGeneration());
+    }
+
+    IEnumerator SmokeScreenGeneration()
+    {
+        Instantiate(smokeScreen, dropPosition.position, transform.rotation);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(smokeScreen, dropPosition.position, transform.rotation);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(smokeScreen, dropPosition.position, transform.rotation);
+    }
     private void SonarInput()
     {
         //If the game's time is greater than the next time the player is allowed to use the sonar

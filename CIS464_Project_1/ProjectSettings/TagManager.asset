@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Mine
   - Torpedo
+  - Smoke
   layers:
   - Default
   - TransparentFX
