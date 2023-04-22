@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesKilled: 1
   playerDeaths: 0
-  currentLevel: 2
-  startTime: 1.4506214
-  endTime: 9.761864
-  time: 8.311242
+  currentLevel: 1
+  startTime: 4.2286267
+  endTime: 13.129621
+  time: 8.900993
   finalLevelID: 7
   inDebugMode: 0

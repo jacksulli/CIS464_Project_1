@@ -125,6 +125,8 @@ public class LevelManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == finalLevelID) //If this level is the final level, win the entire game
         {
             Debug.Log("This is the final level!");
+            Cursor.visible = true; //Turn off mouse cursor
+            Cursor.lockState = CursorLockMode.None; //Lock mouse Cursor
             //This should also theoretically be on the UI manager
             uiManager.TurnOnWinImage(); //Turn on the game win image
             uiManager.TurnOnScoreSheet();//Turn on the score panel

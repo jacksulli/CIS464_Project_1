@@ -52,8 +52,7 @@ MonoBehaviour:
   player: {fileID: 0}
   minWaitTime: 1
   maxWaitTime: 10
-  periscope: {fileID: 859056830776672254}
-  torpedo: {fileID: 3103376389177017567, guid: bfff8c9e10ce973478b9ea8917c97ee9, type: 3}
+  periscope: {fileID: 839020336}
   homingTorpedo: {fileID: 3103376389177017564, guid: fbbeaff6dc81eec4cb1cbb824b2f81d8, type: 3}
   explosionEffect: {fileID: 4559901993901544462, guid: e98fc855dcd44b844bcc3e580f78b929, type: 3}
   debris: {fileID: 3185373630269957859, guid: 8ecc191720d928847973f80ee67797a4, type: 3}
@@ -333,15 +332,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5528775578114618546, guid: a48cb5ba1a0b12d4f90c8e4136eb8333, type: 3}
+      propertyPath: rotationTime
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a48cb5ba1a0b12d4f90c8e4136eb8333, type: 3}
+--- !u!114 &839020336 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5528775578114618546, guid: a48cb5ba1a0b12d4f90c8e4136eb8333, type: 3}
+  m_PrefabInstance: {fileID: 5528775577342974850}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f80f688dec604f4089f8ed9c9df4ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &859056830776672253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5139121448076633215, guid: a48cb5ba1a0b12d4f90c8e4136eb8333, type: 3}
-  m_PrefabInstance: {fileID: 5528775577342974850}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &859056830776672254 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5139121448076633212, guid: a48cb5ba1a0b12d4f90c8e4136eb8333, type: 3}
   m_PrefabInstance: {fileID: 5528775577342974850}
   m_PrefabAsset: {fileID: 0}

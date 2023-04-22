@@ -50,6 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastPoint: {fileID: 6835847765968966968}
+  hasTarget: 0
+  rotationTime: 2
+  raycastDistance: 10
+  inStartSequence: 1
 --- !u!1 &5139121449027383141
 GameObject:
   m_ObjectHideFlags: 0

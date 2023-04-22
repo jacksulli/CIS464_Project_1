@@ -53,8 +53,12 @@ public class BoatController : MonoBehaviour
     [SerializeField] private GameObject smokeScreen; //Value to clamp velocity
 
     //Cooldown
-    public float sonarCoolDown = 5f; //This should be the time it takes a depth charge to explode
+    [SerializeField] private float sonarCoolDown = 5f;
     private float nextSonarTime;  //Private variable to determine when the sonar can be used
+
+    [SerializeField] private float smokeCoolDown = 3f;
+    private float nextSmokeTime;
+
     [SerializeField] GameObject sonarUIHolder; //Sonar UI gameobject
     [SerializeField] GameObject sonarActiveUI; //UI Gameobject that says that the sonar is active
     [SerializeField] GameObject sonarRechargeUI; //UI GameObject that says the sonar is recharging
@@ -100,10 +104,17 @@ public class BoatController : MonoBehaviour
                 }
             }
 
-            if(Input.GetKeyDown(KeyCode.Q))
+
+            //If Q is pressed, and the cooldown has passed, drop a smoke screen
+            if (Time.time > nextSmokeTime)
             {
-                DeploySmokeScreen();
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    DeploySmokeScreen();
+                    nextSmokeTime = Time.time + smokeCoolDown;
+                }
             }
+
 
             SonarInput(); //Check for the player pressing the sonar button
 
@@ -162,6 +173,7 @@ public class BoatController : MonoBehaviour
 
     private void DeploySmokeScreen()
     {
+        AudioManager.Instance.PlaySound("Smoke");
         StartCoroutine(SmokeScreenGeneration());
     }
 

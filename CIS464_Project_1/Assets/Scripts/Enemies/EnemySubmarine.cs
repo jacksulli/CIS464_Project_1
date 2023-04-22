@@ -12,7 +12,7 @@ public class EnemySubmarine : MonoBehaviour
     [SerializeField] private float minWaitTime = 1f; //Wait time between attacks
     [SerializeField] private float maxWaitTime = 15f;
 
-    [SerializeField] GameObject periscope; //Reference to periscope game object
+    [SerializeField] Periscope periscope; //Reference to periscope game object
     Rigidbody torpedo; //Reference to the torpedo when it is fired
     [SerializeField] GameObject homingTorpedo;
 
@@ -88,6 +88,7 @@ public class EnemySubmarine : MonoBehaviour
         RaisePeriscope();
         yield return new WaitForSeconds(2f);
         LowerPeriscope();
+        periscope.inStartSequence = false;
         enemiesLeft.enemiesPerLevel = enemiesLeft.value;
         yield return new WaitForSeconds(1f);
         StartCoroutine(Attack());
@@ -124,17 +125,26 @@ public class EnemySubmarine : MonoBehaviour
             yield return new WaitForSeconds(timeToWait);
             agent.enabled = false; //Turn off navmeshagent so moving submarines will stop during their attack cycle
             RaisePeriscope(); //Raise periscope
-            yield return new WaitForSeconds(2f);
+            yield return new WaitUntil(() => periscope.isRotating == false);
+            if(periscope.hasTarget == true)
+            {
+                yield return new WaitForSeconds(2f);
+            }
             LowerPeriscope(); //Lower periscope
             yield return new WaitForSeconds(1f);
 
-            //Submarine shoots a total of 3 seconds after raising the periscope
-            for (int i = 0; i < enemyType.shotCount; i++) //Shoot as many torpedoes as the enemy type allows
+            if (periscope.hasTarget == true)
             {
-                Shoot();
-                yield return new WaitForSeconds(0.3f); //Wait 0.3 seconds in between each shot
+                //Submarine shoots a total of 3 seconds after raising the periscope
+                for (int i = 0; i < enemyType.shotCount; i++) //Shoot as many torpedoes as the enemy type allows
+                {
+                    Shoot();
+                    yield return new WaitForSeconds(0.3f); //Wait 0.3 seconds in between each shot
+                }
             }
 
+            periscope.hasTarget = false;
+            periscope.isRotating = true;
             agent.enabled = true; //Turn on the navmeshagent
         }
 
@@ -143,13 +153,14 @@ public class EnemySubmarine : MonoBehaviour
     private void RaisePeriscope()
     {
         waterRipple.rateOverTime = 2f; //Turn on the ripple effect by increasing the particle emissions over time
-        periscope.SetActive(true); //Turn on the periscope gameobject
+        periscope.gameObject.SetActive(true); //Turn on the periscope gameobject
         AudioManager.Instance.PlaySound("Drop1");
     }
     private void LowerPeriscope()
     {
         waterRipple.rateOverTime = 0f; //Turn off water ripple
-        periscope.SetActive(false); //Turn off the periscope gameobject
+        periscope.currentRotationTime = 0f;
+        periscope.gameObject.SetActive(false); //Turn off the periscope gameobject
         AudioManager.Instance.PlaySound("Drop2"); //Play the drop sound
     }
 

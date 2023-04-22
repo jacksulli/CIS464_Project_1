@@ -9,8 +9,16 @@ public class Periscope : MonoBehaviour
     private Transform player; //Reference to the player
     [SerializeField] private Transform raycastPoint;
 
-    private bool isRotation = false;
+    public bool hasTarget = false;
     private EnemySubmarine enemySub;
+
+    public float rotationTime = 3f; // default rotation time is 1 second
+
+    private Transform target;
+    public float currentRotationTime = 0f;
+    public bool isRotating = true;
+
+    public bool inStartSequence = true;
 
     private void Start()
     {
@@ -19,7 +27,14 @@ public class Periscope : MonoBehaviour
     }
     void Update()
     {
-        TrackPlayer(); //Turns the periscope towards the player
+        if(hasTarget)
+        {
+            TrackPlayer(); //Turns the periscope towards the player
+        }
+        else if(!inStartSequence)
+        {
+            LookForPlayer();
+        } 
     }
 
     void TrackPlayer()
@@ -29,10 +44,31 @@ public class Periscope : MonoBehaviour
 
     void LookForPlayer()
     {
+        
+        transform.Rotate(new Vector3(0f, 360f / rotationTime * Time.deltaTime, 0f)); //Rotate the object around the Z axis
+
+        // update the current rotation time
+        currentRotationTime += Time.deltaTime;
+
+        // check if we've completed the rotation
+        if (currentRotationTime >= rotationTime)
+        {
+            isRotating = false;
+            currentRotationTime = 0f;
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(raycastPoint.position, transform.TransformDirection(Vector3.forward), out hit, 30f))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+
+            if (hit.collider.CompareTag("Player"))
+            {
+                target = hit.collider.transform;
+                hasTarget = true;
+                isRotating = false;
+            }
         }
     }
+
 }

@@ -210,6 +210,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dcc2621bbe305954caf1e46344d435e6, type: 3}
   - name: TorpedoExplosion
     clip: {fileID: 8300000, guid: 02bb890b8b3047d4c86df3a3644abad3, type: 3}
+  - name: Smoke
+    clip: {fileID: 8300000, guid: 9ff41dc40ebc5514c8d7d0223c4778d4, type: 3}
   musicSource: {fileID: 6967445270358789675}
   sfxSource: {fileID: 6967445269594402782}
   musicPlaying: 0
