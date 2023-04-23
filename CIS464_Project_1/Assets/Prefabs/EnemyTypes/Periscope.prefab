@@ -52,7 +52,8 @@ MonoBehaviour:
   raycastPoint: {fileID: 6835847765968966968}
   hasTarget: 0
   rotationTime: 2
-  raycastDistance: 10
+  currentRotationTime: 0
+  isRotating: 1
   inStartSequence: 1
 --- !u!1 &5139121449027383141
 GameObject:
@@ -410,7 +411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6436808345271768088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.013, y: -0.012, z: 0.1984}
+  m_LocalPosition: {x: -0.013, y: 0.096, z: 0.1984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

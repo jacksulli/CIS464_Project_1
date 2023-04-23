@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 8253391805784011152}
   - component: {fileID: 406852401743127742}
   m_Layer: 0
-  m_Name: TestDepthCharge
+  m_Name: DepthCharge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

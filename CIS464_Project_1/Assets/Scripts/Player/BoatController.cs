@@ -175,7 +175,7 @@ public class BoatController : MonoBehaviour
     void OnEnable()
     {
         enemiesManager.enemiesLeftEvent.AddListener(LevelOver); //Make this script a listener for the LevelOver event from the enemiesManager Scriptable Object
-        controls.Gameplay.Enable(); //enable the input system
+        //controls.Gameplay.Enable(); //enable the input system
     }
 
     private void DeploySmokeScreen()
