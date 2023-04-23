@@ -122,7 +122,7 @@ public class LevelManager : MonoBehaviour
         playerStats.enemiesKilled += enemiesManager.enemiesPerLevel; //Add the amount of enemies killed to the scoreboard
         enemiesManager.enemiesPerLevel = 0; //Reset the enemies per level value (this is under construction)
         playerStats.EndTimeCounter(); //End the timer counting how long the player has been on the game
-        if (SceneManager.GetActiveScene().buildIndex == finalLevelID) //If this level is the final level, win the entire game
+        if (SceneManager.GetActiveScene().buildIndex >= finalLevelID) //If this level is the final level, win the entire game
         {
             Debug.Log("This is the final level!");
             Cursor.visible = true; //Turn off mouse cursor

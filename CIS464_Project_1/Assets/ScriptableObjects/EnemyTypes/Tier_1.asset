@@ -17,7 +17,7 @@ MonoBehaviour:
   canMove: 0
   homingTorpedo: 0
   shotCount: 1
-  torpedoSpeed: 3
+  torpedoSpeed: 3.5
   sharpShooter: 0
   subSpeed: 0.5
   torpedoRotationSpeed: 0.5

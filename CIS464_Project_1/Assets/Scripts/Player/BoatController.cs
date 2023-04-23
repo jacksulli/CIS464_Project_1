@@ -277,6 +277,7 @@ public class BoatController : MonoBehaviour
             }
             else
             {
+                Debug.Log("Loss!");
                 //Generate loss UI
                 levelManager.Loss();
             }

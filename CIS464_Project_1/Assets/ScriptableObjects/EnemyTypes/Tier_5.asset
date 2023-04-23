@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044bc00f333a8a9419af0210d2386723, type: 3}
   m_Name: Tier_5
   m_EditorClassIdentifier: 
-  enemyDescription: 
+  enemyDescription: Shoots homing torpedoes
   canMove: 0
   homingTorpedo: 1
   shotCount: 1
-  torpedoSpeed: 1
+  torpedoSpeed: 1.5
   sharpShooter: 0
   subSpeed: 0.5
   torpedoRotationSpeed: 1

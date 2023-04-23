@@ -9728,7 +9728,7 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: ab8688fd7b6e8714fb3f4ecaf114e3fb, type: 2}
   sonarPingObject: {fileID: 4787690717428490490, guid: 165648f6c7550704b8bbae24758a7f1b, type: 3}
   movementSpeed: 13
-  rotationSpeed: 2
+  rotationSpeed: 3
   maxVelocity: 1
   wakeMultiplier: 5
   wakeBase: 10
@@ -9742,6 +9742,7 @@ MonoBehaviour:
   livesManager: {fileID: 11400000, guid: 6371e19c7be9ea44dbd8b0512f8565ca, type: 2}
   smokeScreen: {fileID: 274630676763013515, guid: 3719ae6c954dfea449a9c4e174d17d37, type: 3}
   sonarCoolDown: 5
+  smokeCoolDown: 3
   sonarUIHolder: {fileID: 0}
   sonarActiveUI: {fileID: 0}
   sonarRechargeUI: {fileID: 0}

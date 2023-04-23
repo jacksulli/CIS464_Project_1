@@ -104,7 +104,9 @@ public class UIManager : MonoBehaviour
 
     public void TurnOnLossMenu()
     {
-
+        lossMenu.SetActive(true);
+        Cursor.visible = true; //Turn on mouse cursor
+        Cursor.lockState = CursorLockMode.None; //Unlock mouse Cursor
     }
 
     public void TurnOnWinText()

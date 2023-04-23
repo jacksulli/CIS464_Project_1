@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf4d4ae59dd4a44c9b2b88fbb30d8d6, type: 3}
   m_Name: PlayerStatsSO
   m_EditorClassIdentifier: 
-  enemiesKilled: 1
+  enemiesKilled: 0
   playerDeaths: 0
   currentLevel: 1
-  startTime: 4.2286267
-  endTime: 13.129621
-  time: 8.900993
-  finalLevelID: 7
+  startTime: 760.8998
+  endTime: 0
+  time: 754.7272
+  finalLevelID: 2
   inDebugMode: 0
