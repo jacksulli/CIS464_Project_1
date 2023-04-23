@@ -25,7 +25,7 @@ public class BoatController : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 13f; //Movement speed (Force)
-    [SerializeField] private float rotationSpeed = 2f; //Rotation speed
+    [SerializeField] private float rotationSpeed = 3f; //Rotation speed
     [SerializeField] private float maxVelocity = 1f; //Value to clamp velocity
 
 
@@ -52,13 +52,15 @@ public class BoatController : MonoBehaviour
     [SerializeField] private PlayerLivesSO livesManager; //Reference to the player lives
     [SerializeField] private GameObject smokeScreen; //Value to clamp velocity
 
-    //Cooldown
-    [SerializeField] private float sonarCoolDown = 5f;
-    private float nextSonarTime;  //Private variable to determine when the sonar can be used
-
+    [Header("Smoke Screen Info")]
     [SerializeField] private float smokeCoolDown = 3f;
     private float nextSmokeTime;
+    [SerializeField] GameObject smokeActiveUI; //UI Gameobject that says that the sonar is active
+    [SerializeField] GameObject smokeRechargeUI; //UI GameObject that says the sonar is recharging
 
+    [Header("Sonar Info")]
+    [SerializeField] private float sonarCoolDown = 5f;
+    private float nextSonarTime;  //Private variable to determine when the sonar can be used
     [SerializeField] GameObject sonarUIHolder; //Sonar UI gameobject
     [SerializeField] GameObject sonarActiveUI; //UI Gameobject that says that the sonar is active
     [SerializeField] GameObject sonarRechargeUI; //UI GameObject that says the sonar is recharging
@@ -108,10 +110,15 @@ public class BoatController : MonoBehaviour
             //If Q is pressed, and the cooldown has passed, drop a smoke screen
             if (Time.time > nextSmokeTime)
             {
+                smokeRechargeUI.SetActive(false); //Turn of the recharging message
+                smokeActiveUI.SetActive(true); //Turn on the active message
+
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     DeploySmokeScreen();
                     nextSmokeTime = Time.time + smokeCoolDown;
+                    smokeRechargeUI.SetActive(true); //Turn of the recharging message
+                    smokeActiveUI.SetActive(false); //Turn on the active message
                 }
             }
 

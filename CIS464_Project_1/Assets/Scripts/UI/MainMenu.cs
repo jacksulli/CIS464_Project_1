@@ -18,8 +18,24 @@ public class MainMenu : MonoBehaviour
         playerStats.inDebugMode = false;
         Cursor.visible = true; //Make the cursor visible, in case the player is coming from in-game
         Cursor.lockState = CursorLockMode.None; //Unlock the cursor
+        AudioManager.Instance.PlayMusic("MainMenu");
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(controlsMenu.activeSelf == true)
+            {
+                CloseControlsMenu();
+            }
+
+            if (optionsMenu.activeSelf == true)
+            {
+                CloseOptionsMenu();
+            }
+        }
+    }
     //Starts the game from Level 1. This is triggered by the player clicking the Start button, which has a reference to this script
     public void StartGame()
     {
@@ -27,7 +43,7 @@ public class MainMenu : MonoBehaviour
         livesManager.value = 3; //Set the base level of lives that the player gets, this should be controlled by a variable
         playerStats.ResetStats(); //Reset the players stats for the score
         playerStats.StartTimeCounter(); //Start the timer to count how long it takes the player to complete the game
-
+        AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(1); //Load level 1
     }
 

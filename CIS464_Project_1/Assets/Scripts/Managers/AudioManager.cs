@@ -28,6 +28,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(musicPlaying)
+        {
+            if(musicSource.isPlaying == false)
+            {
+                PlayRandomTrack();
+            }
+        }
+    }
     public void PlayMusic(string _name)
     {
         Sound s = Array.Find(musicSounds, x => x.name == _name); //Find the music with the name name being inputted
@@ -65,7 +75,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayRandomTrack()
     {
-        Sound s = musicSounds[UnityEngine.Random.Range(1, musicSounds.Length)]; //Find the music with the name name being inputted
+        Sound s = musicSounds[UnityEngine.Random.Range(2, musicSounds.Length)]; //Find the music with the name name being inputted
 
         musicSource.PlayOneShot(s.clip); //Play the music
         musicPlaying = true;

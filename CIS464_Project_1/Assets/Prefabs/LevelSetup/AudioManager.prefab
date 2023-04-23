@@ -177,6 +177,8 @@ MonoBehaviour:
   musicSounds:
   - name: VictoryTrack
     clip: {fileID: 8300000, guid: 301f9981879873f4c862b9e0c4f950a8, type: 3}
+  - name: MainMenu
+    clip: {fileID: 8300000, guid: 347788df85b7c544fa7dda611c5b88da, type: 3}
   - name: Track_1
     clip: {fileID: 8300000, guid: 2e6ec1b8d605e704f8f24605ebb2b6ff, type: 3}
   - name: Track_2
@@ -212,6 +214,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 02bb890b8b3047d4c86df3a3644abad3, type: 3}
   - name: Smoke
     clip: {fileID: 8300000, guid: 9ff41dc40ebc5514c8d7d0223c4778d4, type: 3}
+  - name: Pickup
+    clip: {fileID: 8300000, guid: f1fe5a8398f161147a51544688d04d61, type: 3}
   musicSource: {fileID: 6967445270358789675}
   sfxSource: {fileID: 6967445269594402782}
   musicPlaying: 0

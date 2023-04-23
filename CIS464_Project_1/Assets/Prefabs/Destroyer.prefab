@@ -9667,6 +9667,7 @@ GameObject:
   - component: {fileID: 8267034605581916651}
   - component: {fileID: 8267034605581916648}
   - component: {fileID: 1548579770296108790}
+  - component: {fileID: 1105710027}
   m_Layer: 0
   m_Name: Destroyer
   m_TagString: Player
@@ -9741,8 +9742,10 @@ MonoBehaviour:
   mesh: {fileID: 919132148458651590}
   livesManager: {fileID: 11400000, guid: 6371e19c7be9ea44dbd8b0512f8565ca, type: 2}
   smokeScreen: {fileID: 274630676763013515, guid: 3719ae6c954dfea449a9c4e174d17d37, type: 3}
-  sonarCoolDown: 5
   smokeCoolDown: 3
+  smokeActiveUI: {fileID: 0}
+  smokeRechargeUI: {fileID: 0}
+  sonarCoolDown: 5
   sonarUIHolder: {fileID: 0}
   sonarActiveUI: {fileID: 0}
   sonarRechargeUI: {fileID: 0}
@@ -9759,6 +9762,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.10526295, y: 0.116436854, z: 0.5086701}
   m_Center: {x: -0.00003761798, y: -0.0049263835, z: 0.0006390363}
+--- !u!65 &1105710027
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8267034605581916649}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10526295, y: 0.6, z: 0.5086701}
+  m_Center: {x: -0.00003761798, y: 0.36, z: 0.0006390363}
 --- !u!1 &8517616623548146925
 GameObject:
   m_ObjectHideFlags: 0

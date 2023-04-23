@@ -13,7 +13,6 @@ public class powerup : MonoBehaviour
         if(other.CompareTag("Player")) {
             Pickup(other);
         }
-
     }
 
     void Pickup(Collider player) {

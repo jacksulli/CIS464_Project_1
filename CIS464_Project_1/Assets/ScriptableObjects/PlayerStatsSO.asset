@@ -15,8 +15,8 @@ MonoBehaviour:
   enemiesKilled: 0
   playerDeaths: 0
   currentLevel: 1
-  startTime: 760.8998
+  startTime: 2.6416733
   endTime: 0
-  time: 754.7272
-  finalLevelID: 2
+  time: 86.84779
+  finalLevelID: 10
   inDebugMode: 0
