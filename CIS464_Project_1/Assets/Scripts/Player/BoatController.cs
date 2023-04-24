@@ -24,9 +24,9 @@ public class BoatController : MonoBehaviour
     [SerializeField] private GameObject sonarPingObject; //Sonar ping that appears over enemy boats
 
     [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed = 13f; //Movement speed (Force)
-    [SerializeField] private float rotationSpeed = 3f; //Rotation speed
-    [SerializeField] private float maxVelocity = 1f; //Value to clamp velocity
+    [SerializeField] public float movementSpeed = 13f; //Movement speed (Force)
+    [SerializeField] public float rotationSpeed = 3f; //Rotation speed
+    [SerializeField] public float maxVelocity = 1f; //Value to clamp velocity
 
 
     [Header("Boat Wake")]
@@ -41,7 +41,7 @@ public class BoatController : MonoBehaviour
     [SerializeField] private GameObject depthCharge; //Depth charge gameobject that will be dropped
     [SerializeField] private Transform dropPosition; //Position the depth charge will be dropped at
     [SerializeField] private float dropBackwardForce, dropUpwardForce; //Force values for launching depth charge
-    [SerializeField] private float coolDownTime = 2f; //Ideally this should be the same time as it takes a depth charge to explode
+    [SerializeField] public float coolDownTime = 2f; //Ideally this should be the same time as it takes a depth charge to explode
     private float nextFireTime; //Private variable to determine when the depth charge can be dropped
 
     //Scriptable object variable, determines how many depth charges are in play
