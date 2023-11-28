@@ -15,8 +15,6 @@ public class BoatController : MonoBehaviour
     private Camera cam; //Main camera
     private bool canDie = true; //Controls whether player is invincible or not
     private bool freezeControls = true; //Controls whether controls are frozen or not
-    
-    private PlayerController controls; //Controls utilizing the Input System
 
     public EnemiesLeftSO enemiesManager; //Reference to the enemies manager scriptable object
     [SerializeField] private PlayerStats playerStats; //Reference to the player stats SO which controls the final game score
@@ -73,9 +71,6 @@ public class BoatController : MonoBehaviour
         Cursor.visible = false; //Turn off mouse cursor
         Cursor.lockState = CursorLockMode.Locked; //Lock mouse Cursor
 
-        controls = new PlayerController(); //player controls using the Input System
-        controls.Gameplay.DepthCharge.performed += ctx => DropDepthCharge();
-
         //Get reference to wake particle systems
         wakeParticle = transform.GetChild(2).GetComponent<ParticleSystem>().emission;
         frontWakeParticle = transform.GetChild(3).GetComponent<ParticleSystem>().emission; //Ideally should change this to search by name
@@ -85,8 +80,6 @@ public class BoatController : MonoBehaviour
 
         //Start the start sequence that freezes the boat at the beginning of the level
         StartCoroutine(StartSequence());
-
-
     }
 
     void Update()
@@ -122,7 +115,6 @@ public class BoatController : MonoBehaviour
                 }
             }
 
-
             SonarInput(); //Check for the player pressing the sonar button
 
             Move(); //Check for the player rotating the boat
@@ -142,9 +134,7 @@ public class BoatController : MonoBehaviour
         ToggleFreezeControls(); //Unfreeze controls
     }
 
-
-    // Update is called once per frame
-
+    // ### TODO ### Find why this is in FixedUpdate
     void FixedUpdate()
     {
 
@@ -289,7 +279,6 @@ public class BoatController : MonoBehaviour
                 levelManager.Loss();
             }
 
-            Debug.Log("Disabling Boat");
             this.gameObject.SetActive(false);
         }
         

@@ -10,7 +10,9 @@ public class DepthCharge : MonoBehaviour
     [SerializeField] private GameObject explosion; //Reference to the depth charge explosion object (not effect)
 
     [SerializeField] private FloatVariable depthChargeUses; //Get a reference to the float variable that corresponds to depth charge uses
-    
+
+    [SerializeField] private float maxSize;
+    [SerializeField] private float minSize;
     void Start()
     {
         StartCoroutine(LifeCycle());
