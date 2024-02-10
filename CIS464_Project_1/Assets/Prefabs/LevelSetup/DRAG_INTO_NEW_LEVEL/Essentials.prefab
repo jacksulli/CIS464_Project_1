@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8267034605581916650, guid: 27d4c75a4d99c73409aa762043cda8c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -833.42206
+      value: -830.58
       objectReference: {fileID: 0}
     - target: {fileID: 8267034605581916650, guid: 27d4c75a4d99c73409aa762043cda8c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -82,11 +82,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8267034605581916650, guid: 27d4c75a4d99c73409aa762043cda8c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.251814
+      value: -12.23
       objectReference: {fileID: 0}
     - target: {fileID: 8267034605581916650, guid: 27d4c75a4d99c73409aa762043cda8c4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8267034605581916650, guid: 27d4c75a4d99c73409aa762043cda8c4, type: 3}
       propertyPath: m_LocalRotation.x
@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8267034605581916650, guid: 27d4c75a4d99c73409aa762043cda8c4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: 8267034605581916650, guid: 27d4c75a4d99c73409aa762043cda8c4, type: 3}
       propertyPath: m_LocalRotation.z
@@ -106,7 +106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8267034605581916650, guid: 27d4c75a4d99c73409aa762043cda8c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8267034605581916650, guid: 27d4c75a4d99c73409aa762043cda8c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -192,6 +192,46 @@ PrefabInstance:
     - target: {fileID: 2558248382929045114, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
       propertyPath: m_Name
       value: MANAGERS
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248383816870500, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248383816870500, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248383816870500, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248384535938446, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248384535938446, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248384535938446, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248384535938446, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248384535938446, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 212.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248384535938446, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558248384535938446, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000057936
       objectReference: {fileID: 0}
     - target: {fileID: 5409181096141480471, guid: b53c8397e4b9b08499deed687c6cd076, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

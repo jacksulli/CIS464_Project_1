@@ -126,14 +126,14 @@ public class EnemySubmarine : MonoBehaviour
             agent.enabled = false; //Turn off navmeshagent so moving submarines will stop during their attack cycle
             RaisePeriscope(); //Raise periscope
             yield return new WaitUntil(() => periscope.isRotating == false);
-            if(periscope.hasTarget == true)
+            if(periscope.HasTarget == true)
             {
                 yield return new WaitForSeconds(2f);
             }
             LowerPeriscope(); //Lower periscope
             yield return new WaitForSeconds(1f);
 
-            if (periscope.hasTarget == true)
+            if (periscope.HasTarget == true)
             {
                 //Submarine shoots a total of 3 seconds after raising the periscope
                 for (int i = 0; i < enemyType.shotCount; i++) //Shoot as many torpedoes as the enemy type allows
@@ -143,7 +143,7 @@ public class EnemySubmarine : MonoBehaviour
                 }
             }
 
-            periscope.hasTarget = false;
+            periscope.HasTarget = false;
             periscope.isRotating = true;
             agent.enabled = true; //Turn on the navmeshagent
         }

@@ -8,8 +8,12 @@ public class Periscope : MonoBehaviour
 {
     private Transform player; //Reference to the player
     [SerializeField] private Transform raycastPoint;
+    [SerializeField] private GameObject exclamationPoint;
 
-    public bool hasTarget = false;
+    private bool hasTarget = false;
+
+    public bool HasTarget { get { return hasTarget; } set { hasTarget = value; } }
+
     private EnemySubmarine enemySub;
 
     public float rotationTime = 3f; // default rotation time is 1 second
@@ -39,7 +43,10 @@ public class Periscope : MonoBehaviour
 
     void TrackPlayer()
     {
+        // Look at the player, but lock rotation around the y-axis
+        // This is because if the player is on top of the periscope it will try to look down
         transform.LookAt(player);
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
     }
 
     void LookForPlayer()
@@ -67,8 +74,21 @@ public class Periscope : MonoBehaviour
                 target = hit.collider.transform;
                 hasTarget = true;
                 isRotating = false;
+                AlertSubmarine();
             }
         }
+    }
+
+    private void AlertSubmarine()
+    {
+        StartCoroutine(ExclamationMark());
+    }
+
+    IEnumerator ExclamationMark()
+    {
+        exclamationPoint.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        exclamationPoint.SetActive(false);
     }
 
 }
